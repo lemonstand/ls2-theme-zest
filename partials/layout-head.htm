@@ -1,0 +1,25 @@
+---
+description: ''
+---
+<meta charset="utf-8" />
+
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="Description" content="{{ page.description }}"/>
+<meta name="Keywords" content="{{ page.keywords }}"/>
+
+<title>{{ page.title }}</title>
+
+{{ css_combine([
+  'core_css',
+  '@css/foundation.min.css',
+  '@css/style.css'
+]) }}
+
+{{ js_combine([
+  '@javascript/jquery.js',
+  '@javascript/modernizr.foundation.js',
+  '@javascript/foundation.min.js',
+  '@javascript/app.js',
+  'ls_core_jquery'
+]) }}

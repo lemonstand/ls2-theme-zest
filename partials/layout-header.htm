@@ -1,0 +1,64 @@
+<header>
+  <div class="row topline">
+    <div class="six columns login">
+      {% if this.customer %}
+        Welcome, {{ this.customer.first_name }}!
+        <a href="{{ root_url('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ root_url('login') }}">Login or Register</a>
+      {% endif %}
+    </div>
+    <div class="six columns">
+      <div class="row">
+        <div class="seven columns">
+          {{ open_form({'class': 'search', 'method': 'get', 'action': root_url('search')}) }}
+            <input type="text" name="query" value="{{query|unescape}}" placeholder="Search store&hellip;"/>
+          {{ close_form() }}
+        </div>
+        <div class="five columns" id="mini-cart">{{ partial('shop-minicart') }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="four columns">Company Name Here</h1>
+    <div class="eight columns">
+      <ul class="nav-bar">
+        {% set active_page = active_page|default('home') %}
+        <li class="{{ active_page == 'home' ? 'active' : null }}"><a href="{{ root_url('/') }}">Home</a></li>
+        <li class="has-flyout {{ active_page == 'shop' ? 'active' : null }}">
+          <a href="{{ root_url('shop') }}">Shop</a>
+          <a class="flyout-toggle" href="{{ root_url('shop') }}"><span> </span></a>
+          <ul class="flyout" style="display: none;">
+            {% tree categories %}
+                {% for category in tree.items %}
+                    <li><a href="/category/{{ category.url_name }}">{{ category.name }}</a></li>
+                {% endfor %}
+            {% endtree %}
+          </ul>
+        </li>
+        {% if this.customer %}
+          <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ root_url('orders') }}">My Orders</a></li>
+          <li class="{{ active_page == 'profile' ? 'active' : null }}"><a href="{{ root_url('profile') }}">My Profile</a></li>
+        {% endif %}
+        <li class="{{ active_page == 'about' ? 'active' : null }}"><a href="{{ root_url('about') }}">About</a></li>
+        <li class="{{ active_page == 'contact' ? 'active' : null }}"><a href="{{ root_url('contact') }}">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  {% if title_area %}
+    <div class="row secondhead">
+      <div class="twelve columns omega">
+        <!-- 
+          If the block 'title' is defined on the page, output it. 
+          Otherwise output the H2 element with the current page's title. 
+        -->
+        <h2 class="left">{{ this.page.title }}</h2>
+        <div class="right">
+          {{ partial('shop-breadcrumbs') }}
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  {% endif %}
+</header>
