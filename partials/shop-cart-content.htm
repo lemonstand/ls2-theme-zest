@@ -1,0 +1,70 @@
+{% if itemCount %}
+  <div class="row">
+    {{ partial('shop-cart-items', {'edit_cart': true}) }}
+  </div>
+  
+  <div class="row">
+    <!-- shipping estimate calculator... how to do this? -->
+    <div class="six columns" style="display:none">
+      <h3>Shipping rates calculator</h3>
+
+      <div class="row">
+        <div class="four columns">
+          <label for="country">Country</label>
+          <!-- 
+            The state selector updates automatically when the country changes. 
+            See app.js for the implementation details. 
+          -->
+          <select id="country" name="country" data-state-selector="state" data-current-state="{{ shipping_info.state }}">
+            {% for country in countries %}
+              <option value="{{ country.id }}" {{ option_state(country.id, shipping_info.country) }}>{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="four columns">
+          <label for="state">State</label>
+          <select id="state" name="state"> 
+            {# partial('shop-stateoptions', {'states': states, 'current_state': shipping_info.state}) #}
+          </select>
+        </div>
+    
+        <div class="four columns">
+          <label for="zip">Zip/Postal Code</label>
+          <input name="zip" type="text" value="{{ shipping_info.zip }}"/>
+        </div>
+      </div>
+      
+      <a class="button" href="#" data-ajax-handler="shop:on_evalShippingRate" data-ajax-update="#shipping_options=shopestimatedshippingoptions">Calculate</a>
+        
+      <div id="shipping_options"></div>
+    </div>
+    
+    <div class="three columns offset-by-three data-list align-right">
+      <p><strong>Discount applied:</strong> <i>{{ 0|currency }}</i></p>
+      <p><strong>Cart total:</strong> <i>{{ cart.getSubtotal()|currency }}</i></p>
+      <p class="subtotal"><strong>Estimated total:</strong>  <i>{{ cart.getTotal()|currency }}</i></p>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="buttons-block">
+      <div class="six columns">
+        <a class="secondary button" href="{{ root_url('shop') }}">Continue shopping</a>
+      </div>
+      <div class="six columns">
+        <div class="right">
+          <input type="text" id="coupon" name="coupon" value="{{ coupon_code }}" placeholder="Coupon code" disabled />
+        
+          <a class="secondary button" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">Update cart</a> 
+          <a class="button" href="{{ root_url('/checkout-start') }}">Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="row">
+    <div class="six columns">
+      <a class="secondary button" href="{{ root_url('shop') }}">Your cart is empty! Continue shopping.</a>
+    </div>
+  </div>
+{% endif %}

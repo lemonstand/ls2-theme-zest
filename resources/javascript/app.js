@@ -48,7 +48,7 @@
   // 
   // Automatically apply Foundation custom form styles when an AJAX request finishes
   //
-  $(window).on('onAjaxUpdateFinished', function(){
+  $(window).on('onAfterAjaxUpdate', function(){
     $(document).foundationCustomForms();
   });
 
@@ -62,13 +62,20 @@
       return false;
     })
 
+    //Handle selecting product option
+    $(document).on('change', 'select.product-option', function () {
+      $(this).sendRequest('shop:product', {
+          update: {'#product-page': 'shop-product'}
+      });
+    });
+
     //
     // Handle the Enter key in the Coupon field
     //
     $('#cart-content').on('keydown', 'input#coupon', function(ev) {
       if (ev.keyCode == 13) {
-        $(this).sendRequest('on_action', {
-          update: {'cart-content': 'shop:cart_content', 'mini-cart': 'shop:mini_cart'},
+        $(this).sendRequest('shop:cart', {
+          update: {'#cart-content': 'shop-cart-content', '#mini-cart': 'shop-minicart'},
           extraFields: {'set_coupon_code': 1}
         });
       }
@@ -79,8 +86,8 @@
     //
     $('#cart-content').on('keydown', 'input.quantity', function(ev) {
       if (ev.keyCode == 13) {
-        $(this).sendRequest('on_action', {
-          update: {'cart-content': 'shop:cart_content', 'mini-cart': 'shop:mini_cart'}
+        $(this).sendRequest('shop:cart', {
+          update: {'#cart-content': 'shop-cart-content', '#mini-cart': 'shop-minicart'}
         });
       }
     });
@@ -93,8 +100,8 @@
       // order totals area on the Checkout page. The native Checkout 
       // action does all the calculations.
       //
-      $(this).sendRequest('on_action', {
-        update: {'checkout-totals': 'shop:checkout_totals'}
+      $(this).sendRequest('shop:onCheckoutShippingMethod', {
+        update: {'#checkout-totals': 'shop-checkout-totals'}
       })
     });
 
@@ -114,25 +121,36 @@
 
     $('#payment_method').change(function(){
       $(this).sendRequest('shop:on_updatePaymentMethod', {
-        update: {'payment_form': 'shop:payment_form'},
+        update: {'payment_form': 'shop-paymentform'},
         onAfterUpdate: foundationCustomizePaymentForms
+      });
+    })
+
+    $(document).on('click', '#copy_billing_to_shipping', function (){
+      //data-ajax-handler="shop:onCopyBillingToShipping" data-ajax-update="#checkout-page=shop-checkoutaddress"
+      $(this).sendRequest('shop:onCheckoutBillingInfo', {
+          onAfterUpdate: function() {
+            $(this).sendRequest('shop:onCopyBillingToShipping', {
+              update: {'#checkout-page' : 'shop-checkout-address'}
+            });
+          }
       });
     })
 
     // 
     // Automatically update state lists when a country is changed
     //
-    $(document).on('change', '[data-state-selector]', function(){
+    $(document).on('change', '[data-state-selector2]', function(){
       var 
-        stateSelectorId = $(this).data('state-selector');
+        stateSelectorId = $(this).data('state-selector2');
         updateList = {};
         
-      updateList[stateSelectorId] = 'shop:state_options';
+      updateList['#'+stateSelectorId] = 'shop-stateoptions';
 
-      $(this).sendRequest('shop:on_updateStateList', {
+      $(this).sendRequest('shop:onUpdateStateList', {
           extraFields: {
-            country: $(this).val(),
-            current_state: $(this).data('current-state')
+            country_id: $(this).val(),
+            state_id: $(this).data('current-state')
           },
           update: updateList,
           onAfterUpdate: function() {
@@ -141,4 +159,11 @@
       });
     });
   });
+
+  $(document).on('change', '#payment_method', function() {
+    $(this).sendRequest('shop:onUpdatePaymentMethod', {
+        update: {'#payment_form' : 'shop-paymentform'},
+        onAfterUpdate: function () { }
+    });
+  })
 })(jQuery);

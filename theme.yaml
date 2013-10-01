@@ -3,5 +3,5 @@ name: 'Zest Theme'
 author: 'LemonStand eCommerce Inc.'
 website: 'http://lemonstand.com/'
 engine: twig
-404: 404
+404: home
 ---

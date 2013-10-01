@@ -46,16 +46,16 @@
     </div>
   </div>
   
-  {% if title_area %}
+  {% if titleArea %}
     <div class="row secondhead">
       <div class="twelve columns omega">
         <!-- 
           If the block 'title' is defined on the page, output it. 
           Otherwise output the H2 element with the current page's title. 
         -->
-        <h2 class="left">{{ this.page.title }}</h2>
+        <h2 class="left">{{ page.title }}</h2>
         <div class="right">
-          {{ partial('shop-breadcrumbs') }}
+          {# content_block('shop-breadcrumbs') #}
         </div>
         <div class="clear"></div>
       </div>

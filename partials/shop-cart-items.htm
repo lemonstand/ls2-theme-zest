@@ -1,0 +1,40 @@
+<table class="product-list full-width">
+  <tr>
+    <th>Item</th>
+    <th class="narrow">Quantity</th>
+    <th class="narrow">Price</th>
+    <th class="narrow">Discount</th>
+    <th class="narrow">Total</th>
+    <th class="narrow"></th>
+  </tr>
+  {% for item in items %}
+  <tr>
+    <td>
+      <a class="hide-for-small" href="/product/{{ item.product.urlName }}"><img src="{{ item.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+      <div class="short-description">
+        <h3><a href="/product/{{ item.product.urlName }}">{{ item.product.name }}</a></h3>
+        {% set description = item.item_description('. ', true) %}
+        {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+      </div>
+    </td>
+    {%if edit_cart %}
+    <td class="narrow"><input type="text" name="item_quantity[{{ item.key }}]" class="quantity" value="{{ item.quantity }}"></td>
+    {% else %}
+    <td class="narrow">{{ item.quantity }}</td>
+    {% endif %}
+    <td class="narrow"><i>{{ item.product.price|currency }}</i></td>
+    <td class="narrow"><i>{{ 0|currency }}</i></td>
+    <td class="narrow"><i>{{ item.total()|currency }}</i></td>
+    <td class="narrow remove">
+      {%if edit_cart %}
+      <a href="#" 
+        data-ajax-handler="shop:cart" 
+        {# data-ajax-confirm="Do you really want to remove this item from the cart?" #}
+        data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart"
+        data-ajax-extra-fields="delete_item='{{ item.key }}'"
+      >Remove</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>

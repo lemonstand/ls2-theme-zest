@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="content twelve columns">
+    {% if cart %}
+      {{ partial('shop-cart-items') }}
+
+      <div class="row">
+        <div class="six columns">
+          {% if order.payment_processed %}
+            <p class="flash info"><strong>Thank you!</strong> The payment is already processed for this order.</p>
+          {% else %}
+            <div class="row">
+              <div class="twelve columns">
+                <label for="payment_method">Payment method</label>
+                <!-- 
+                  The payment form below (id="payment_form") automatically updates when
+                  the payment method is changed. See app.js for the implementation details. 
+                -->
+                {{ open_form({'class': 'custom'}) }}
+                  <select name="paymentMethodId" id="payment_method">
+                    <option value=''> - </option>
+                    {% for method in paymentMethods %}
+                        <option value="{{ method.id }}">{{ method.name }}</option>
+                    {% endfor %}
+                  </select>
+                </form>
+              </div>
+            </div>
+            <div class="row dd3">
+              {{ open_form({'class': 'custom', 'data-ajax-handler': 'shop:onPay'}) }}
+                <div id="payment_form">{{ partial('shop-paymentform') }}</div>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+      
+        <div class="three columns offset-by-two data-list align-right">
+          {{ partial('shop-checkout-totals') }}
+        </div>
+      </div>
+      
+    {% else %}
+      <p class="flash error">Order not found.</p>
+    {% endif %}
+  </div>
+</div>

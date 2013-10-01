@@ -1,0 +1,36 @@
+---
+action: 'shop:category'
+description: ''
+template: inner
+protocol: ''
+published: '1'
+redirect: ''
+title: Category
+url: /category/:urlName/:page?
+---
+<div class="row">
+  <div class="content twelve columns">
+    <div class="row">
+    
+      <div class="three columns categories">
+        <h3>Categories</h3>
+        {{ partial('shop-categories') }}
+      </div>
+      <div class="product-list nine columns">
+        {% if not category %}
+          <h2>Category not found</h2>
+          <p>We are sorry, the requested category was not found.</p>
+        {% else %}
+          <div class="row">
+          {{ 
+            partial('shop-product-list', {
+              'products': products,
+              'empty_text': 'There are no products in this category.'
+            }) 
+          }} 
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{% if discount %}
+  <p><strong>Discount applied:</strong> <i>{{ discount|currency }}</i></p>
+{% endif %}
+<p><strong>Cart total:</strong> <i>{{ totals.subtotalNoTax|currency }}</i></p>
+{% if totals.totalShippingQuote %}
+  <p><strong>Shipping:</strong> <i>{{ totals.totalShippingQuote|currency }}</i></p>
+{% endif %}
+<p><strong>Tax:</strong> <i>{{ totals.totalTax|currency }}</i></p>
+<p class="subtotal"><strong>Total:</strong>  <i>{{ totals.total|currency }}</i></p>  

@@ -1,0 +1,41 @@
+---
+description: 'Payment form partial for Stripe Payments payment method'
+---
+<form method="post" action="" data-ajax-handler="shop:onPay">
+    <input type="hidden" value="{{  paymentMethod.id}}" name="payment_method_id">
+    <div class="form-row">
+        <div class="form-col2">
+            <span class="form-title required">Cardholder First Name:</span>
+            <input type="text" name="firstName">
+        </div>
+        <div class="form-col2">
+            <span class="form-title required">Cardholder Last Name:</span>
+            <input type="text" name="lastName">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-col2-l">
+            <span class="form-title required">Card Number:</span>
+            <input type="text" name="cardNumber" autocomplete="off">
+        </div>
+        <div class="form-col2-s">
+            <span class="form-title required">Security Code:</span>
+            <input type="text" name="securityCode" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-col2">
+            <span class="form-title required">Expiry Month:</span>
+            <input type="text" name="expiryMonth">
+        </div>
+        <div class="form-col2">
+            <span class="form-title required">Expiry Year:</span>
+            <input type="text" name="expiryYear">
+        </div>
+    </div>
+    <div class="form-row">
+        <input type="submit" value="Pay" class="nextButton">
+    </div>
+</form>

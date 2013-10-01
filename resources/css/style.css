@@ -1,11 +1,3 @@
-.test {
-  background: url("/banana/this.jpg");
-  background: url("./banana/this.jpg");
-  background: url('apple.jpg');
-  background: url('../hank/dank/sisi/kojo/orange.jpg');
-  background: url(http://static.adzerk.net/Advertisers/d31c8d7d3cf640a6b29d9ad71788dd4a.png);
-}
-
 /* Common styles */
 body {font: 14px "Helvetica Neue", Arial, sans-serif; -webkit-text-size-adjust: 100%;}
 h1 {font-size: 20px; margin-top: 17px; color: red;}
@@ -103,7 +95,7 @@ form.custom div.custom.dropdown ul {top: 31px;}
   form.custom div.columns > div.custom.dropdown, form.custom li.field > div.custom.dropdow {width: 100%!important;}
   form.custom div.columns > div.custom.dropdown ul, form.custom li.field > div.custom.dropdown ul {width: 100%!important;}
 form.custom span.custom.checkbox {top: 3px;}
-form.custom span.custom.radio {top: 0;}
+form.custom span.custom.radio {top: 0; float: left;}
 
 span.choice-title,  label span.choice-description {display: block; margin-left: 30px; margin-top: 5px;}
 label span.choice-description {font-weight: normal; line-height: 150%;}
@@ -303,9 +295,28 @@ footer p {font-size: 12px;}
     .product-list .mybutton {float: right;}
 
     /* Pagination */
-    ul.pagination {margin-bottom: 0;}
+    div.pagination ul{margin-bottom: 0;}
     .product-list .pagination li {border-bottom: none; margin: 0!important;}
     .product-list .pagination li:last-child {float: none!important; }
+
+    div.pagination-centered ul>li {
+    float: none;
+    display: inline-block;
+    }
+
+    .pagination li a {
+    display: block;
+    padding: 1px 7px 1px;
+    color: #555;
+    }
+
+    .pagination li.active a {
+    background: #dc3e2f;
+    color: #fff !important;
+    font-weight: bold;
+    cursor: default;
+    }
+
       
       /* @media for product list */   
       @media only screen and (max-width: 767px) {

@@ -1,0 +1,124 @@
+  {{ open_form({'class': 'custom'}) }}
+  <div class="row">
+    <div class="six columns">
+
+      <h3>Billing Information</h3>
+      
+      <div class="row">
+        <div class="six columns">
+          <label for="billing_firstName">First Name</label>
+          <input type="text" name="billingInfo[firstName]" {{ this.customer ? 'disabled' : null }} id="billing_firstName" value="{{ billingInfo.firstName }}"/>
+        </div>
+        <div class="six columns">
+          <label for="billing_lastName">Last Name</label>
+          <input type="text" name="billingInfo[lastName]" {{ this.customer ? 'disabled' : null }} id="billing_lastName" value="{{ billingInfo.lastName }}"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <label for="billing_email">E-mail Address</label>
+          <input type="text" name="billingInfo[email]" {{ this.customer ? 'disabled' : null }} id="billing_email" value="{{ billingInfo.email }}" />
+        </div>
+        <div class="six columns">
+          <label for="billing_phone">Phone Number</label>
+          <input type="text" name="billingInfo[phone]" id="billing_phone" value="{{ billingInfo.phone }}"/>
+        </div>
+      </div>
+      
+      <label for="billing_address">Address</label>
+      <textarea id="billing_address" name="billingInfo[streetAddressLine1]">{{ billingInfo.streetAddressLine1 }}</textarea>
+      <div class="row">
+        <div class="six columns">
+          <label for="billing_city">City</label>
+          <input type="text" name="billingInfo[city]" id="billing_city" value="{{ billingInfo.city }}"/>
+        </div>
+        <div class="six columns">
+          <label for="billing_postalCode">Zip Code</label>
+          <input type="text" id="billing_postalCode" name="billingInfo[postalCode]" value="{{ billingInfo.postalCode }}"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <label for="billing_country">Country</label>
+          <!-- 
+            The state selector updates automatically when the country changes. 
+            See app.js for the implementation details. 
+          -->        
+          <select id="billing_country" name="billingInfo[countryId]" data-state-selector2="billing_state" data-current-state="{{ billingInfo.stateId }}">
+            {% for country in countries %}
+              <option {{ option_state(billingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="six columns">
+          <label for="billing_state">State</label>
+          <select id="billing_state" name="billingInfo[stateId]"> 
+            {{ partial('shop-stateoptions', {'states': billingInfo.country.states, 'selected': billingInfo.stateId}) }}
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="six columns">
+      <h3 class="inline-block">Shipping Information</h3> 
+
+      <!-- See the onCopyBillingToShipping AJAX handler implementation on the Checkout page's AJAX tab -->
+      <a href="#" id="copy_billing_to_shipping">Copy Billing Information</a>
+
+      <div class="row">
+        <div class="six columns">
+          <label for="shipping_firstName">First Name</label>
+          <input type="text" name="shippingInfo[firstName]" id="shipping_firstName" value="{{ shippingInfo.firstName }}"/>
+        </div>
+        <div class="six columns">
+          <label for="shipping_lastName">Last Name</label>
+          <input type="text" name="shippingInfo[lastName]" id="shipping_lastName" value="{{ shippingInfo.lastName }}"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="shipping_phone">Phone Number</label>
+          <input type="text" name="shippingInfo[phone]" id="shipping_phone" value="{{ shippingInfo.phone }}"/>
+        </div>
+      </div>
+      
+      <label for="shipping_address">Address</label>
+      <textarea name="shippingInfo[streetAddressLine1]" id="shipping_address">{{ shippingInfo.streetAddressLine1 }}</textarea>
+      <div class="row">
+        <div class="six columns">
+          <label for="shipping_city">City</label>
+          <input type="text" name="shippingInfo[city]" id="shipping_city" value="{{ shippingInfo.city }}"/>
+        </div>
+        <div class="six columns">
+          <label for="shipping_postalCode">Zip Code</label>
+          <input type="text" name="shippingInfo[postalCode]" id="shipping_postalCode" value="{{ shippingInfo.postalCode }}"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <label for="shipping_country">Country</label>
+          <select id="shipping_country" name="shippingInfo[countryId]" data-state-selector2="shipping_state" data-current-state="{{ shippingInfo.stateId }}">
+            {% for country in countries %}
+              <option {{ option_state(shippingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="six columns">
+          <label for="shipping_state">State</label>
+          <select id="shipping_state" name="shippingInfo[stateId]"> 
+            {{ partial('shop-stateoptions', {'states': shippingInfo.country.states, 'selected': shippingInfo.stateId}) }}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="twelve columns">
+      <div class="right">
+        <!-- See the onSetBillingAndShippignInfo AJAX handler implementation on the Checkout page's AJAX tab -->
+        <a class="button" href="#" data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout, #breadcrumbs-area=shop-checkout-progress">Next step</a>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="step" value="billing_info,shipping_info"/>
+{{ close_form }}

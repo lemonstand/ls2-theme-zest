@@ -1,0 +1,21 @@
+---
+action: 'shop:products'
+description: ''
+template: inner
+protocol: ''
+published: '1'
+redirect: ''
+title: Shop
+url: /shop/:page?
+---
+<div class="row">
+  <div class="content twelve columns">
+    <div class="row product-list clearfix">
+      {{ 
+        partial('shop-product-list', {
+          'products': products
+        })
+      }}
+    </div>
+  </div>
+</div>

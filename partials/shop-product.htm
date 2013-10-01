@@ -1,0 +1,63 @@
+<div class="six columns">
+  <div class="item-images">
+    <div class="big-image">
+      <img src="{{ product.images.first.thumbnail(746, 'auto')|default('http://placehold.it/460x300') }}" alt="{{ product.name }}"/>
+    </div>
+    
+    {% if product.images.count > 1 %}
+    <ul class="row">
+      {% for image in product.images %}
+        <li class="four columns mobile-two"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+<div class="six columns description">
+  <div class="short-description {{ on_sale ? 'sale' : null }}">
+    <h2>{{ product.name }}</h2>
+    <span>
+      <a href="#"><i> <!-- Remove the link here -->
+        {% if on_sale %}
+         <span class="oldprice">{{ product.price|currency }}</span>
+        {% endif %}
+        {{ product.price|currency }}
+      </i></a>
+    </span>
+  </div>
+
+  {{ partial('shop-product-attributes') }}
+  {{ partial('shop-product-options') }}
+
+  {# if product is not disabled #}
+    {# if product is not out of stock #}
+      {#{ flash_message() }#}
+      <label class="title" for="customDropdown">Quantity</label>
+      
+      <div class="row add-to-cart-block">
+        <div class="four columns">
+          <input type="text" value="1" name="quantity"/>
+        </div>
+        <div class="four mobile-four columns left">
+          <input type="hidden" name="productId" value="{{ product.id }}"/>
+          <a class="button" href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product">Add to Cart</a>
+        </div>
+      </div>
+    {# else %}
+      <div class="not-available">
+        <p>
+          This product is temporarily unavailable.
+          {% if product.om('expected_availability_date', posted_options) %}
+            <br/>The expected availability date is <strong>{{ product.om('expected_availability_date', posted_options).format('%x') }}</strong>
+          {% endif %}
+        </p>
+      </div>
+    {% endif #}
+  {# else %}
+    <div class="not-available"><p>This product is not available.</p></div>
+  {% endif #}
+  
+  <h3>Description</h3>
+  {{ product.description|unescape }}
+
+</div>
