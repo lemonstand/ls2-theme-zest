@@ -1,17 +1,17 @@
 <header>
   <div class="row topline">
     <div class="six columns login">
-      {% if this.customer %}
-        Welcome, {{ this.customer.first_name }}!
-        <a href="{{ root_url('logout') }}">Logout</a>
+      {% if customer %}
+        Welcome, {{ customer.first_name }}!
+        <a href="{{ site_url('logout') }}">Logout</a>
       {% else %}
-        <a href="{{ root_url('login') }}">Login or Register</a>
+        <a href="{{ site_url('login') }}">Login or Register</a>
       {% endif %}
     </div>
     <div class="six columns">
       <div class="row">
         <div class="seven columns">
-          {{ open_form({'class': 'search', 'method': 'get', 'action': root_url('search')}) }}
+          {{ open_form({'class': 'search', 'method': 'get', 'action': site_url('search')}) }}
             <input type="text" name="query" value="{{query|unescape}}" placeholder="Search store&hellip;"/>
           {{ close_form() }}
         </div>
@@ -24,10 +24,10 @@
     <div class="eight columns">
       <ul class="nav-bar">
         {% set active_page = active_page|default('home') %}
-        <li class="{{ active_page == 'home' ? 'active' : null }}"><a href="{{ root_url('/') }}">Home</a></li>
+        <li class="{{ active_page == 'home' ? 'active' : null }}"><a href="{{ site_url('/') }}">Home</a></li>
         <li class="has-flyout {{ active_page == 'shop' ? 'active' : null }}">
-          <a href="{{ root_url('shop') }}">Shop</a>
-          <a class="flyout-toggle" href="{{ root_url('shop') }}"><span> </span></a>
+          <a href="{{ site_url('shop') }}">Shop</a>
+          <a class="flyout-toggle" href="{{ site_url('shop') }}"><span> </span></a>
           <ul class="flyout" style="display: none;">
             {% tree categories %}
                 {% for category in tree.items %}
@@ -37,11 +37,11 @@
           </ul>
         </li>
         {% if this.customer %}
-          <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ root_url('orders') }}">My Orders</a></li>
-          <li class="{{ active_page == 'profile' ? 'active' : null }}"><a href="{{ root_url('profile') }}">My Profile</a></li>
+          <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ site_url('orders') }}">My Orders</a></li>
+          <li class="{{ active_page == 'profile' ? 'active' : null }}"><a href="{{ site_url('profile') }}">My Profile</a></li>
         {% endif %}
-        <li class="{{ active_page == 'about' ? 'active' : null }}"><a href="{{ root_url('about') }}">About</a></li>
-        <li class="{{ active_page == 'contact' ? 'active' : null }}"><a href="{{ root_url('contact') }}">Contact</a></li>
+        <li class="{{ active_page == 'about' ? 'active' : null }}"><a href="{{ site_url('about') }}">About</a></li>
+        <li class="{{ active_page == 'contact' ? 'active' : null }}"><a href="{{ site_url('contact') }}">Contact</a></li>
       </ul>
     </div>
   </div>
@@ -53,7 +53,7 @@
           If the block 'title' is defined on the page, output it. 
           Otherwise output the H2 element with the current page's title. 
         -->
-        <h2 class="left">{{ page.title }}</h2>
+        <div id="breadcrumbs-area"><h2 class="left">{{ page.title }}</h2></div>
         <div class="right">
           {# content_block('shop-breadcrumbs') #}
         </div>

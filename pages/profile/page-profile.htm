@@ -1,0 +1,43 @@
+---
+action: 'shop:customerProfile'
+description: ''
+template: inner
+protocol: ''
+published: '1'
+redirect: ''
+title: Profile
+url: /profile
+---
+<div class="row">
+  <div class="content twelve columns">
+    <section id="profile-addresses">
+    {{ partial('shop-customerprofile') }}
+    </section>
+
+    <div class="row">
+      {{ open_form({'data-ajax-handler': 'shop:onChangePassword', 'class': 'custom'}) }}
+        <div class="six columns">
+          <h3>Change password</h3>
+          <label for="oldPassword">Old password</label>
+          <input name="oldPassword" id="oldPassword" type="password" class="text" value=""/>
+
+          <div class="row">
+            <div class="six columns">
+              <label for="password">New password</label>
+              <input name="password" id="password" type="password" class="text" value=""/>
+            </div>
+            
+            <div class="six columns">
+              <label for="passwordConfirm">Password confirmation</label>
+              <input name="passwordConfirm" id="passwordConfirm" type="password" class="text" value=""/>
+            </div>
+          </div>
+          
+          <input type="submit" class="button" value="Save"/>
+          <input type="hidden" name="flash" value="Your password has been successfully changed."/>
+          <input type="hidden" name="redirect" value="{{ root_url('/profile') }}"/>
+        </div>
+      {{ close_form() }}
+    </div>
+  </div>
+</div>

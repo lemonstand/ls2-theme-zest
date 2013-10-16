@@ -119,10 +119,10 @@
       foundationCustomizePaymentForms();
     }
 
-    $('#payment_method').change(function(){
-      $(this).sendRequest('shop:on_updatePaymentMethod', {
-        update: {'payment_form': 'shop-paymentform'},
-        onAfterUpdate: foundationCustomizePaymentForms
+    $(document).on('change', '#payment_method', function() {
+      $(this).sendRequest('shop:onUpdatePaymentMethod', {
+          update: {'#payment_form' : 'shop-paymentform'},
+          onAfterUpdate: foundationCustomizePaymentForms
       });
     })
 
@@ -140,9 +140,9 @@
     // 
     // Automatically update state lists when a country is changed
     //
-    $(document).on('change', '[data-state-selector2]', function(){
+    $(document).on('change', '[data-state-select]', function(){
       var 
-        stateSelectorId = $(this).data('state-selector2');
+        stateSelectorId = $(this).data('state-select');
         updateList = {};
         
       updateList['#'+stateSelectorId] = 'shop-stateoptions';
@@ -159,11 +159,4 @@
       });
     });
   });
-
-  $(document).on('change', '#payment_method', function() {
-    $(this).sendRequest('shop:onUpdatePaymentMethod', {
-        update: {'#payment_form' : 'shop-paymentform'},
-        onAfterUpdate: function () { }
-    });
-  })
 })(jQuery);

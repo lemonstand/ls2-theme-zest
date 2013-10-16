@@ -1,4 +1,4 @@
-  {{ open_form({'class': 'custom'}) }}
+{{ open_form({'class': 'custom'}) }}
   <div class="row">
     <div class="six columns">
 
@@ -44,7 +44,7 @@
             The state selector updates automatically when the country changes. 
             See app.js for the implementation details. 
           -->        
-          <select id="billing_country" name="billingInfo[countryId]" data-state-selector2="billing_state" data-current-state="{{ billingInfo.stateId }}">
+          <select id="billing_country" name="billingInfo[countryId]" data-state-select="billing_state" data-current-state="{{ billingInfo.stateId }}">
             {% for country in countries %}
               <option {{ option_state(billingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
@@ -53,7 +53,7 @@
         <div class="six columns">
           <label for="billing_state">State</label>
           <select id="billing_state" name="billingInfo[stateId]"> 
-            {{ partial('shop-stateoptions', {'states': billingInfo.country.states, 'selected': billingInfo.stateId}) }}
+            {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
           </select>
         </div>
       </div>
@@ -97,7 +97,7 @@
       <div class="row">
         <div class="six columns">
           <label for="shipping_country">Country</label>
-          <select id="shipping_country" name="shippingInfo[countryId]" data-state-selector2="shipping_state" data-current-state="{{ shippingInfo.stateId }}">
+          <select id="shipping_country" name="shippingInfo[countryId]" data-state-select="shipping_state" data-current-state="{{ shippingInfo.stateId }}">
             {% for country in countries %}
               <option {{ option_state(shippingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
@@ -106,7 +106,7 @@
         <div class="six columns">
           <label for="shipping_state">State</label>
           <select id="shipping_state" name="shippingInfo[stateId]"> 
-            {{ partial('shop-stateoptions', {'states': shippingInfo.country.states, 'selected': shippingInfo.stateId}) }}
+            {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId}) }}
           </select>
         </div>
       </div>

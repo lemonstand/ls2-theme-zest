@@ -2,8 +2,6 @@
   {{ partial('shop-checkout-address') }}
 {% elseif step == 'shipping_method' %}
   {{ partial('shop-checkout-shippingmethod') }}
-{% elseif step == 'review' %}
-  {{ partial('shop-checkout-review') }}
 {% elseif step == 'pay' %}
   {{ partial('shop-checkout-pay') }}
 {% endif %}

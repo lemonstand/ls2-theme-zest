@@ -8,12 +8,32 @@ redirect: ''
 title: Checkout
 url: /checkout-start
 ---
+{% if customer %}
+{# TODO: this page should be for logged out shoppers only #}
+<div class="row">
+  <div class="content twelve columns">
+    <div class="row">
+      <div class="five columns">
+        <h3>Continue checkout as {{ customer.first_name }}</h3>
+        <p>Continue checkout as the currently logged in customer, {{ customer.first_name }}.</p>
+        <a class="button" href="{{ site_url('checkout') }}">Continue as {{ customer.first_name }}</a>
+      </div>
+
+      <div class="six columns">
+        <h3>Continue checkout as guest</h3>
+        <p>Logout and continue checkout as guest. No sign up required.</p>
+        <a class="button" href="{{ site_url('logout/?redirect=checkout') }}">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
 <div class="row">
   <div class="content twelve columns">
     <div class="row">
       <div class="five columns">
         <h3>Login</h3>
-        {{ open_form({'data-ajax-handler': 'shop:on_login'}) }}
+        {{ open_form({'data-ajax-handler': 'shop:onLogin'}) }}
           <div class="row">
             <div class="twelve columns">
               <label for="login_email">E-mail Address</label>
@@ -28,17 +48,18 @@ url: /checkout-start
           </div>
           
           <input type="submit" class="button" value="Login"/>
-          <a class="right forgotpass" href="{{ root_url('/password-restore') }}">Forgot your password?</a>
+          <a class="right forgotpass" href="{{ site_url('/password-restore') }}">Forgot your password?</a>
           
-          <input type="hidden" name="redirect" value="{{ root_url('/checkout') }}"/>
+          <input type="hidden" name="redirect" value="{{ site_url('/checkout') }}"/>
         {{ close_form() }}
       </div>
-        
+
       <div class="six columns">
         <h3>Continue checkout as guest</h3>
         <p>Continue checkout as guest. No sign up required.</p>
-        <a class="button" href="{{ root_url('checkout') }}">Continue as guest</a>
+        <a class="button" href="{{ site_url('checkout') }}">Continue as guest</a>
       </div>
     </div>
   </div>
 </div>
+{% endif %}

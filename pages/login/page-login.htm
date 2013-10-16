@@ -1,0 +1,74 @@
+---
+action: 'shop:login'
+description: ''
+template: inner
+protocol: ''
+published: '1'
+redirect: ''
+title: Login
+url: /login
+---
+<div class="row">
+  <div class="content twelve columns">
+    <div class="row">
+      <div class="five columns">
+        <h3>Login</h3>
+        {{ open_form({'data-ajax-handler': 'shop:onLogin'}) }}
+          <div class="row">
+            <div class="twelve columns">
+              <label for="login_email">E-mail Address</label>
+              <input type="text" id="login_email" name="email" value="{{ post('email') }}"/>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="twelve columns">
+              <label for="login_password">Password</label>
+              <input type="password" name="password" id="login_password" />
+            </div>
+          </div>
+          
+          <input type="submit" class="button" value="Login"/>
+          <a class="right forgotpass" href="{{ site_url('password-restore') }}">Forgot your password?</a>
+          
+          <input type="hidden" name="redirect" value="{{ site_url(root_url('/')) }}"/>
+          
+        {{ close_form() }}
+      </div>
+        
+      <div class="six columns">
+        <h3>Register</h3>
+      
+        {{ open_form({'data-ajax-handler': 'shop:onSignup'}) }}
+          <div class="row">
+            <div class="six columns">
+              <label for="firstName">First Name</label>
+              <input name="firstName" id="firstName" type="text" class="text"/>
+            </div>
+            <div class="six columns">
+              <label for="lastName">First Name</label>
+              <input name="lastName" id="lastName" type="text" class="text"/>
+            </div>
+            
+            <div class="twelve columns">
+              <label for="signup_email">Email</label>
+              <input id="signup_email" type="text" name="email" class="text"/>
+            </div>
+
+            <div class="six columns">
+              <label for="password">Password</label>
+              <input name="password" id="password" type="password" class="text"/>
+            </div>
+            <div class="six columns">
+              <label for="passwordConfirm">Confirm Password</label>
+              <input name="passwordConfirm" id="passwordConfirm" type="password" class="text"/>
+            </div>
+          </div>
+          <input type="hidden" name="autologin" value="1" />
+          <input type="hidden" name="redirect" value="{{ site_url('registered') }}"/>
+          <input type="submit" class="button" value="Submit"/>
+        {{ close_form() }}
+      </div>
+    </div>
+  </div>
+</div>

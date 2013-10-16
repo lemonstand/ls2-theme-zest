@@ -540,7 +540,8 @@ footer p {font-size: 12px;}
    * The following part styles the standard LemonStand payment form markup to match the theme.
    */
 
-  #payment_form {margin-top: 20px;}
+  #payment_form {margin-top: 20px; padding-left:10px;}
+  #payment_form p {font-size:12px;}
 
   ul.form li {clear: both;}
   ul.form li.left {float: left; width: 45%;}

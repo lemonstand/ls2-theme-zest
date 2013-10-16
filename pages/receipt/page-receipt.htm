@@ -34,12 +34,12 @@ url: /receipt/:paymenthash
         <div class="row"> 
           <div class="twelve columns">
             <div class="right">
-              <a class="button" href="{{ root_url('shop') }}">Continue Shopping</a>
+              <a class="button" href="{{ site_url('shop') }}">Continue Shopping</a>
             </div>
           </div>
         </div>
       {% else %}
-        <p><a class="button" href="{{ root_url('review/'~order.order_hash) }}">Pay the order</a></p>
+        <p><a class="button" href="{{ site_url('review/'~order.order_hash) }}">Pay the order</a></p>
       {% endif %}
     
     {% else %}

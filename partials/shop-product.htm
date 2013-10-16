@@ -31,12 +31,12 @@
 
   {# if product is not disabled #}
     {# if product is not out of stock #}
-      {#{ flash_message() }#}
+      {# flash() #}
       <label class="title" for="customDropdown">Quantity</label>
       
       <div class="row add-to-cart-block">
         <div class="four columns">
-          <input type="text" value="1" name="quantity"/>
+          <input type="text" value="{{ quantity|default("1") }}" name="quantity"/>
         </div>
         <div class="four mobile-four columns left">
           <input type="hidden" name="productId" value="{{ product.id }}"/>

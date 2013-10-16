@@ -15,7 +15,7 @@
             The state selector updates automatically when the country changes. 
             See app.js for the implementation details. 
           -->
-          <select id="country" name="country" data-state-selector="state" data-current-state="{{ shipping_info.state }}">
+          <select id="country" name="country" data-state-select="state" data-current-state="{{ shipping_info.state }}">
             {% for country in countries %}
               <option value="{{ country.id }}" {{ option_state(country.id, shipping_info.country) }}>{{ country.name }}</option>
             {% endfor %}
@@ -49,14 +49,18 @@
   <div class="row">
     <div class="buttons-block">
       <div class="six columns">
-        <a class="secondary button" href="{{ root_url('shop') }}">Continue shopping</a>
+        <a class="secondary button" href="{{ site_url('shop') }}">Continue shopping</a>
       </div>
       <div class="six columns">
         <div class="right">
           <input type="text" id="coupon" name="coupon" value="{{ coupon_code }}" placeholder="Coupon code" disabled />
         
-          <a class="secondary button" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">Update cart</a> 
-          <a class="button" href="{{ root_url('/checkout-start') }}">Checkout</a>
+          <a class="secondary button" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">Update cart</a>
+          {% if customer %}
+            <a class="button" href="{{ site_url('/checkout') }}">Checkout</a>
+          {% else %}
+            <a class="button" href="{{ site_url('/checkout-start') }}">Checkout</a>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -64,7 +68,7 @@
 {% else %}
   <div class="row">
     <div class="six columns">
-      <a class="secondary button" href="{{ root_url('shop') }}">Your cart is empty! Continue shopping.</a>
+      <a class="secondary button" href="{{ site_url('shop') }}">Your cart is empty! Continue shopping.</a>
     </div>
   </div>
 {% endif %}
