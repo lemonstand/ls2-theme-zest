@@ -10,16 +10,12 @@ description: ''
 
 <title>{{ page.title }}</title>
 
-{{ css_combine([
-  'core_css',
-  '@css/foundation.min.css',
-  '@css/style.css'
-]) }}
+<link rel="stylesheet" type="text/css" href="/cms/core.css">
+<link rel="stylesheet" type="text/css" href="{{ 'css/foundation.min.css'|theme_resource }}">
+<link rel="stylesheet" type="text/css" href="{{ 'css/style.css'|theme_resource }}">
 
-{{ js_combine([
-  '@javascript/jquery.js',
-  '@javascript/modernizr.foundation.js',
-  '@javascript/foundation.min.js',
-  '@javascript/app.js',
-  'core'
-]) }}
+<script type="text/javascript" src="{{ 'javascript/jquery.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/modernizr.foundation.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/foundation.min.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/app.js'|theme_resource }}"></script>
+<script type="text/javascript" src="/cms/core.js"></script>
