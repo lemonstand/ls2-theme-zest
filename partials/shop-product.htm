@@ -57,7 +57,9 @@
     <div class="not-available"><p>This product is not available.</p></div>
   {% endif #}
   
-  <h3>Description</h3>
-  {{ product.description|unescape }}
+  {% if product.description %}
+    <h3>Description</h3>
+    {{ product.description|unescape }}
+  {% endif %}
 
 </div>

@@ -11,9 +11,11 @@
     <div class="six columns">
       <div class="row">
         <div class="seven columns">
+          <!-- The Search feature is not implemented yet
           {{ open_form({'class': 'search', 'method': 'get', 'action': site_url('search')}) }}
             <input type="text" name="query" value="{{query|unescape}}" placeholder="Search store&hellip;"/>
           {{ close_form() }}
+          -->
         </div>
         <div class="five columns" id="mini-cart">{{ partial('shop-minicart') }}</div>
       </div>
@@ -23,20 +25,22 @@
     <h1 class="four columns">Company Name Here</h1>
     <div class="eight columns">
       <ul class="nav-bar">
-        {% set active_page = active_page|default('home') %}
+        {% set active_page = globals.active_page|default('home') %}
         <li class="{{ active_page == 'home' ? 'active' : null }}"><a href="{{ site_url('/') }}">Home</a></li>
-        <li class="has-flyout {{ active_page == 'shop' ? 'active' : null }}">
+        <li class="{% if categories.count %}has-flyout{% endif %} {{ active_page == 'shop' ? 'active' : null }}">
           <a href="{{ site_url('shop') }}">Shop</a>
-          <a class="flyout-toggle" href="{{ site_url('shop') }}"><span> </span></a>
-          <ul class="flyout" style="display: none;">
-            {% tree categories %}
-                {% for category in tree.items %}
-                    <li><a href="/category/{{ category.url_name }}">{{ category.name }}</a></li>
-                {% endfor %}
-            {% endtree %}
-          </ul>
+          {% if categories.count %}
+              <a class="flyout-toggle" href="{{ site_url('shop') }}"><span> </span></a>
+              <ul class="flyout" style="display: none;">
+                {% tree categories %}
+                    {% for category in tree.items %}
+                        <li><a href="/category/{{ category.url_name }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                {% endtree %}
+              </ul>
+          {% endif %}
         </li>
-        {% if this.customer %}
+        {% if customer %}
           <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ site_url('orders') }}">My Orders</a></li>
           <li class="{{ active_page == 'profile' ? 'active' : null }}"><a href="{{ site_url('profile') }}">My Profile</a></li>
         {% endif %}
@@ -49,13 +53,10 @@
   {% if titleArea %}
     <div class="row secondhead">
       <div class="twelve columns omega">
-        <!-- 
-          If the block 'title' is defined on the page, output it. 
-          Otherwise output the H2 element with the current page's title. 
-        -->
+
         <div id="breadcrumbs-area"><h2 class="left">{{ page.title }}</h2></div>
         <div class="right">
-          {# content_block('shop-breadcrumbs') #}
+          {{ code_block('breadcrumbs') }}
         </div>
         <div class="clear"></div>
       </div>
