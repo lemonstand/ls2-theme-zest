@@ -101,7 +101,7 @@
       // action does all the calculations.
       //
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
-        update: {'#checkout-totals': 'shop-checkout-totals'}
+        update: {'#checkout-totals': 'shop-checkout-totals', '#mini-cart':'shop-minicart'}
       })
     });
 
@@ -131,7 +131,7 @@
       $(this).sendRequest('shop:onCheckoutBillingInfo', {
           onAfterUpdate: function() {
             $(this).sendRequest('shop:onCopyBillingToShipping', {
-              update: {'#checkout-page' : 'shop-checkout-address'}
+              update: {'#checkout-page' : 'shop-checkout-address', '#mini-cart':'shop-minicart'}
             });
           }
       });
