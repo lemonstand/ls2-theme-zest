@@ -10,9 +10,9 @@
     {% for item in shipment.shipmentItems %}
     <tr>
       <td>
-        <a class="hide-for-small" href="/product/{{ item.product.urlName }}"><img src="{{ item.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+        <a class="hide-for-small" href="/product/{{ item.product.url_name }}"><img src="{{ item.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
         <div class="short-description">
-          <h3><a href="/product/{{ item.product.urlName }}">{{ item.product.name }}</a></h3>
+          <h3><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h3>
           
           {% set description = item.optionsString() %}
           {% if description %}<p>{{ description|unescape }}</p>{% endif %}
