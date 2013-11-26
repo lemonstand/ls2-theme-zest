@@ -1,0 +1,17 @@
+---
+template: inner
+protocol: all
+published: true
+title: Registered
+url: /registered
+---
+<div class="row">
+  <div class="content twelve columns">
+    <p>Thank you for registering, a confirmation email has been sent to your email address.</p>
+    {% if customer %}
+        <p>You have been automatically logged in.</p>
+    {% else %}
+        <p>Please <a href="{{ root_url('/login') }}">sign in</a> using your email and password.</p>
+    {% endif %}
+  </div>
+</div>

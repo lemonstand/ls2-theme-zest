@@ -6,21 +6,25 @@
     <th class="narrow">Discount</th>
     <th class="narrow">Total</th>
   </tr>
-  {% for item in order.orderItems %}
-  <tr>
-    <td>
-      <a class="hide-for-small" href="/product/{{ item.product.url_name }}"><img src="{{ item.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
-      <div class="short-description">
-        <h3><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h3>
-        
-        {% set description = item.optionsString() %}
-        {% if description %}<p>{{ description|unescape }}</p>{% endif %}
-      </div>
-    </td>
-    <td class="narrow"><i>{{ item.quantity|number_format(0) }}</i></td>
-    <td class="narrow"><i>{{ item.pivot.price|currency }}</i></td>
-    <td class="narrow"><i>{{ 0|currency }}</i></td>
-    <td class="narrow"><i>{{ (item.quantity *item.pivot.price)|currency }}</i></td>
-  </tr>
+  {% for invoice in order.invoices %}
+    {% for shipment in invoice.shipments %}
+      {% for item in shipment.shipmentItems %}
+      <tr>
+        <td>
+          <a class="hide-for-small" href="/product/{{ item.product.url_name }}"><img src="{{ item.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+          <div class="short-description">
+            <h3><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h3>
+            
+            {% set description = item.optionsString() %}
+            {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+          </div>
+        </td>
+        <td class="narrow"><i>{{ item.quantity|number_format(0) }}</i></td>
+        <td class="narrow"><i>{{ item.pivot.price|currency }}</i></td>
+        <td class="narrow"><i>{{ 0|currency }}</i></td>
+        <td class="narrow"><i>{{ (item.quantity *item.pivot.price)|currency }}</i></td>
+      </tr>
+      {% endfor %}
+    {% endfor %}
   {% endfor %}
 </table>
