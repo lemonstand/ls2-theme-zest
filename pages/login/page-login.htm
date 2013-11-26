@@ -12,7 +12,7 @@ url: /login
     <div class="row">
       <div class="five columns">
         <h3>Login</h3>
-        {{ open_form({'data-ajax-handler': 'shop:onLogin'}) }}
+        {{ open_form({'data-ajax-handler': 'shop:onLogin', 'data-validation-message' : ''}) }}
           <div class="row">
             <div class="twelve columns">
               <label for="login_email">E-mail Address</label>
@@ -40,7 +40,7 @@ url: /login
       <div class="six columns">
         <h3>Register</h3>
       
-        {{ open_form({'data-ajax-handler': 'shop:onSignup'}) }}
+        {{ open_form({'data-ajax-handler': 'shop:onSignup', 'data-validation-message' : ''}) }}
           <div class="row">
             <div class="six columns">
               <label for="signup[first_name]">First Name</label>
