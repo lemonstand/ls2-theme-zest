@@ -29,8 +29,8 @@
   {{ partial('shop-product-attributes') }}
   {{ partial('shop-product-options') }}
 
-  {# if product is not disabled #}
-    {# if product is not out of stock #}
+  {% if product.enabled %}
+    {% if not product.isOutOfStock() %}
       {{ flash() }}
       <label class="title" for="customDropdown">Quantity</label>
       
@@ -43,7 +43,7 @@
           <a class="button" href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product">Add to Cart</a>
         </div>
       </div>
-    {# else %}
+    {% else %}
       <div class="not-available">
         <p>
           This product is temporarily unavailable.
@@ -52,10 +52,10 @@
           {% endif %}
         </p>
       </div>
-    {% endif #}
-  {# else %}
+    {% endif %}
+  {% else %}
     <div class="not-available"><p>This product is not available.</p></div>
-  {% endif #}
+  {% endif %}
   
   {% if product.description %}
     <h3>Description</h3>
