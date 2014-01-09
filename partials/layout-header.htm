@@ -34,7 +34,7 @@
               <ul class="flyout" style="display: none;">
                 {% tree categories %}
                     {% for category in tree.items %}
-                        <li><a href="/category/{{ category.url_name }}">{{ category.name }}</a></li>
+                        <li><a href="/category/{{ category.fullUrlName() }}">{{ category.name }}</a></li>
                     {% endfor %}
                 {% endtree %}
               </ul>
