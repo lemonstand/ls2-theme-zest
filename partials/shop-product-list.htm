@@ -3,7 +3,7 @@
 
   <ul class="clearfix">
     {% for product in pagination.items %}
-      {# set is_on_sale = '' #}
+      {% set is_on_sale = product.onSale %}
       {% set page_url = '/product/' ~ product.url_name %}
       
       <li class="three columns mobile-two {{ is_on_sale ? 'sale' : null }}">
@@ -18,7 +18,7 @@
               <span>
                 <a href="{{ page_url }}">
                   <i>
-                    {% if is_on_sale %}<span class="oldprice">{{ product.price|currency }}</span>{% endif %}
+                    {% if is_on_sale %}<span class="oldprice">{{ product.fullPrice|currency }}</span>{% endif %}
                     {{ product.price|currency }}
                   </i>
                 </a>

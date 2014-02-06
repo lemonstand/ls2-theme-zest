@@ -1,3 +1,5 @@
+{% set on_sale = product.onSale %}
+
 <div class="six columns">
   <div class="item-images">
     <div class="big-image">
@@ -19,7 +21,7 @@
     <span>
       <a href="#"><i> <!-- Remove the link here -->
         {% if on_sale %}
-         <span class="oldprice">{{ product.price|currency }}</span>
+         <span class="oldprice">{{ product.fullPrice|currency }}</span>
         {% endif %}
         {{ product.price|currency }}
       </i></a>
