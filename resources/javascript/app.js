@@ -50,6 +50,7 @@
   //
   $(window).on('onAfterAjaxUpdate', function(){
     $(document).foundationCustomForms();
+    $("select[data-ajax-refresh]").change() // Forces Foundation to redraw the drop-down for states select elements after update
   });
 
   $(document).ready(function() {
@@ -61,13 +62,6 @@
 
       return false;
     })
-
-    //Handle selecting product option
-    $(document).on('change', 'select.product-option', function () {
-      $(this).sendRequest('shop:product', {
-          update: {'#product-page': 'shop-product'}
-      });
-    });
 
     //
     // Handle the Enter key in the Coupon field
@@ -136,27 +130,6 @@
           }
       });
     })
-
-    // 
-    // Automatically update state lists when a country is changed
-    //
-    $(document).on('change', '[data-state-select]', function(){
-      var 
-        stateSelectorId = $(this).data('state-select');
-        updateList = {};
-        
-      updateList['#'+stateSelectorId] = 'shop-stateoptions';
-
-      $(this).sendRequest('shop:onUpdateStateList', {
-          extraFields: {
-            country_id: $(this).val(),
-            state_id: $(this).data('current-state')
-          },
-          update: updateList,
-          onAfterUpdate: function() {
-            $('#'+stateSelectorId).change(); // Forces Foundation to redraw the drop-down element
-          }
-      });
-    });
+    
   });
 })(jQuery);

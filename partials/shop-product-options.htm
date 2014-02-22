@@ -3,7 +3,7 @@
     {% for index, option in product.options %}
       <div class="option">
         <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
-        <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="product-option">
+        <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="product-option" data-ajax-handler="shop:product" data-ajax-update="#product-page=shop-product">
           {% for key, value in option.values %}
             <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
           {% endfor %}
