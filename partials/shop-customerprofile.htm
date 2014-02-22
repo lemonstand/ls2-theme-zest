@@ -52,7 +52,7 @@
             The state selector updates automatically when the country changes. 
             See app.js for the implementation details. 
           -->        
-          <select id="billing_country" name="billing[shop_country_id]" data-state-select="billing_state" data-current-state="{{ billing.country.id }}">
+          <select id="billing_country" name="billing[shop_country_id]" data-state-selector="#billing_state" data-current-state="{{ billing.country.id }}">
             {% for country in countries %}
               <option {{ option_state(billing.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
@@ -61,7 +61,7 @@
         </div>
         <div class="six columns">
           <label for="billing_state">State</label>
-          <select id="billing_state" name="billing[shop_state_id]"> 
+          <select id="billing_state" name="billing[shop_state_id]" data-ajax-refresh > 
             {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billing.state.id}) }}
           </select>
           <span class="error"></span>
@@ -117,7 +117,7 @@
       <div class="row">
         <div class="six columns">
           <label for="shipping_country">Country</label>
-          <select id="shipping_country" name="shipping[shop_country_id]" data-state-select="shipping_state" data-current-state="{{ shipping.country.id }}">
+          <select id="shipping_country" name="shipping[shop_country_id]" data-state-selector="#shipping_state" data-current-state="{{ shipping.country.id }}">
             {% for country in countries %}
               <option {{ option_state(shipping.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
@@ -126,7 +126,7 @@
         </div>
         <div class="six columns">
           <label for="shipping_state">State</label>
-          <select id="shipping_state" name="shipping[shop_state_id]"> 
+          <select id="shipping_state" name="shipping[shop_state_id]" data-ajax-refresh> 
             {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shipping.state.id}) }}
           </select>
           <span class="error"></span>
