@@ -316,7 +316,7 @@ footer p {font-size: 12px;}
     text-decoration: underline
     }
 
-    .pagination li.active {
+    .pagination li.active a {
     background: #dc3e2f;
     color: #fff !important;
     font-weight: bold;
