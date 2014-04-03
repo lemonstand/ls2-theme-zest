@@ -1,0 +1,22 @@
+---
+action: 'shop:search'
+template: inner
+protocol: all
+published: true
+name: Search
+url: /search
+---
+<div class="row">
+  <div class="content twelve columns">
+    <div class="row">
+      <div class="six columns">
+        <p>Products found: {{ products.get().count() }}</p>
+      </div>
+    </div>
+    
+    <div class="row product-list">
+      {{ partial('shop-product-list', {
+        'products': products}) }}
+    </div>
+  </div>
+</div>
