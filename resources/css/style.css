@@ -138,6 +138,7 @@ header {margin-top: 20px;}
       background: url(../images/search.gif) no-repeat right 6px;
       margin-bottom: 0;
       height: 36px;
+      transition:none;
     }
 
     header .topline .button {color: white; text-decoration: none; font-style: normal;}
