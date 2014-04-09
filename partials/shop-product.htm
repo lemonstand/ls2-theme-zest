@@ -49,9 +49,6 @@
       <div class="not-available">
         <p>
           This product is temporarily unavailable.
-          {% if product.om('expected_availability_date', posted_options) %}
-            <br/>The expected availability date is <strong>{{ product.om('expected_availability_date', posted_options).format('%x') }}</strong>
-          {% endif %}
         </p>
       </div>
     {% endif %}
