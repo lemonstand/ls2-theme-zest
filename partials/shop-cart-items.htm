@@ -22,8 +22,8 @@
     {% else %}
     <td class="narrow">{{ item.quantity }}</td>
     {% endif %}
-    <td class="narrow"><i>{{ item.product.price|currency }}</i></td>
-    <td class="narrow"><i>{{ 0|currency }}</i></td>
+    <td class="narrow"><i>{{ item.product.base_price|currency }}</i></td>
+    <td class="narrow"><i>{{ item.totalDiscount()|currency }}</i></td>
     <td class="narrow"><i>{{ item.total()|currency }}</i></td>
     <td class="narrow remove">
       {%if edit_cart %}
