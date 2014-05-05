@@ -3,8 +3,11 @@
     <th>Item</th>
     <th class="narrow">Quantity</th>
     <th class="narrow">Price</th>
-    <th class="narrow">Discount</th>
-    <th class="narrow">Total</th>
+    {% if cart.getDiscountTotal() > 0 %}
+      <th class="narrow">Discount</th>
+      <th class="narrow">Unit Price</th>
+    {% endif %}
+      <th class="narrow">Total</th>
     <th class="narrow"></th>
   </tr>
   {% for item in items %}
@@ -22,8 +25,11 @@
     {% else %}
     <td class="narrow">{{ item.quantity }}</td>
     {% endif %}
-    <td class="narrow"><i>{{ item.product.base_price|currency }}</i></td>
-    <td class="narrow"><i>{{ item.totalDiscount()|currency }}</i></td>
+    <td class="narrow"><i>{{ item.product.price()|currency }}</i></td> 
+    {% if cart.getDiscountTotal() > 0 %}
+      <td class="narrow"><i>{{ item.totalDiscount()|currency }}</i></td>
+      <td class="narrow"><i>{{ item.price()|currency }}</i></td>
+    {% endif %}
     <td class="narrow"><i>{{ item.total()|currency }}</i></td>
     <td class="narrow remove">
       {%if edit_cart %}
