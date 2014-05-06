@@ -43,7 +43,9 @@
     </div>
     
     <div class="three columns offset-by-three data-list align-right">
-      <p><strong>Discount applied:</strong> <i>{{ 0|currency }}</i></p>
+      {% if cart.getDiscountTotal() > 0 %}
+        <p><strong>Discount applied:</strong> <i>{{ cart.getDiscountTotal()|currency }}</i></p>
+      {% endif %}
       <p><strong>Cart total:</strong> <i>{{ cart.getSubtotal()|currency }}</i></p>
       <p class="subtotal"><strong>Estimated total:</strong>  <i>{{ cart.getTotal()|currency }}</i></p>
     </div>
