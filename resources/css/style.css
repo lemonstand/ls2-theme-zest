@@ -154,7 +154,7 @@ header {margin-top: 20px;}
   /* Menu */
   .nav-bar {
     background: none; 
-    margin-top: 15px; 
+    margin-top: 30px; 
     margin-bottom: 0;
     float: right;
     }
@@ -558,3 +558,40 @@ footer p {font-size: 12px;}
   ul.form li.field.radio_horizontal div {display: inline-block; margin-right: 15px;}
     ul.form li.field.radio_horizontal div span.custom {top: 1px;}
     ul.form li.field.radio_horizontal div span+span {font-size: 12px; position: relative; display: inline-block; top: -3px; left: -7px;}
+    
+.banner{
+    background: url(../images/zest-banner-bg.jpg) no-repeat;
+    height:368px;
+}
+
+.logo{
+padding: 12px 0px 5px 0px;
+}
+
+.banner h1{
+color:white;
+font-size:50px;
+text-align: right;
+}
+
+.banner h4{
+font-size: 20px;
+color: white;
+font-weight: normal;
+text-align: right;
+}
+
+.banner-contents{
+   padding: 96px 51px 0px 51px; 
+}
+
+.banner a.button{
+float:right;
+}
+
+  @media only screen and (max-width: 767px) {
+    .banner h1{text-align: center;}
+    .banner h4{text-align: center;}
+    .banner a.button{float:none;}
+    .logo-container {text-align: center;}
+  }

@@ -1,26 +1,43 @@
 ---
-action: ''
-description: ''
+action: 'shop:products'
 template: home
-protocol: ''
-published: '1'
-redirect: ''
+protocol: all
+published: true
 name: Home
 url: /
 ---
-
 <div class="row">
   <div class="content twelve columns">
+    <div class="row">
+      <div class="twelve columns banner">
+        <div class="right banner-contents">
+            <h1>Zest</h1>
+            <h4>A responsive LemonStand theme</h4>
+            <a class="button right" href="{{ site_url('shop') }}">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    
     <div class="row product-list">
-      {{ partial('shop-collection', {'collectionCode': 'featured'}) }}
+      {{ partial("home-product-list") }}
     </div>
   
     <div class="row">
-      <div class="twelve columns">
-        {# content_block('welcome', 'Welcome') #}
-        <h2>Develop custom online stores. Without compromise.</h2>
-        <p>LemonStand is a powerful PHP eCommerce platform that's flexible and developer friendly in every way. Full of amazing features, an easy to use interface and a strong developer community.
-      </div>
+        <div class="four columns">
+            <h2>Customizable Checkout</h2>
+            <p>LemonStand’s checkout process is 100% customizable.
+            Designed to offer a seamless experience that doesn’t disrupt
+            your customers by taking them away from your website.</p>
+        </div>
+        <div class="four columns">
+            <h2>Mobile-Friendly</h2>
+            <p>Sell to your customers on any device, anywhere, with one website. eCommerce websites powered by LemonStand use seamless mobile responsive design.</p>
+        </div>
+        <div class="four columns">
+            <h2>No Transaction Fees</h2>
+            <p>We don’t charge any additional transaction fees, regardless of which payment processor
+            you choose. With LemonStand, you keep more profit from all sales.</p>
+        </div>
     </div>
   </div>
 </div>

@@ -20,7 +20,9 @@
     </div>
   </div>
   <div class="row">
-    <h1 class="four columns">Company Name Here</h1>
+    <div class="four columns logo-container">
+        <a href="{{ site_url('/') }}"><img src="{{ 'images/zest-logo.png'|theme_resource }}" alt="Zest Theme" class="logo" /></a>
+    </div>
     <div class="eight columns">
       <ul class="nav-bar">
         {% set active_page = globals.active_page|default('home') %}
