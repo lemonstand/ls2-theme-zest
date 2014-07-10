@@ -64,12 +64,13 @@ url: /contact
             <div class="row">
                 <div class="twelve columns">
                     <label for="contact_message">Message *</label>
-                    <textarea type="text" id="contact_message" name="fields[message]" value="" rows="10"></textarea>
+                    <textarea id="contact_message" name="fields[message]" value="" rows="10"></textarea>
                     <span class="error"/>
                 </div>
             </div>
 
             <input type="submit" class="button" value="Submit"/>
+            <input type="text" name="hp" value="" style="display: none"/>
         {{ close_form() }}
     </div>
 </div>
