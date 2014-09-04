@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="Description" content="{{ page.description }}"/>
 <meta name="Keywords" content="{{ page.keywords }}"/>
+<link rel="icon" type="image/x-icon" href="{{ theme.faviconImage.thumbnail('16', '16') }}"/>
 
 <title>{{ page.title }}</title>
 
@@ -18,3 +19,36 @@
 <script type="text/javascript" src="{{ 'javascript/foundation.min.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/app.js'|theme_resource }}"></script>
 <script type="text/javascript" src="/cms/core.js"></script>
+
+<!-- start custo theme options -->
+<style type="text/css">
+
+	a {
+		color: {{ theme.globalLinkColor }};
+	}
+
+		a:hover {
+			color: {{ theme.globalLinkHoverColor }};
+		}
+
+	a.button {
+		background-color: {{ theme.buttonColor }};
+		border-color: {{ theme.buttonBorderColor }};
+	}
+			a.button:hover {
+				background-color: {{ theme.buttonHoverColor }};
+			}
+
+	.sale i {
+		color: {{ theme.salePriceColor }}!important;
+	}
+
+	.sale span.salesign {
+		background-color: {{ theme.saleBadgeColor }};
+	}
+
+	.banner {
+		background: url('{{ theme.bannerImage.thumbnail('960', 'auto') }}') no-repeat;
+	}
+
+</style>

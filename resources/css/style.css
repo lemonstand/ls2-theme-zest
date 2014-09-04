@@ -386,7 +386,7 @@ footer p {font-size: 12px;}
         margin-bottom: 20px;
         }
         .description h2 {font-size: 35px;}
-        .description .short-description span a i {font-size: 35px;}
+        .description .short-description span i {font-size: 35px;}
         .description h3 {
           border-top: 1px solid #e2e2e2; 
           margin-top: 20px; 
@@ -424,7 +424,7 @@ footer p {font-size: 12px;}
       font-weight: bold;
       padding: 5px 10px;
       } 
-    .sale a i {
+    .sale i {
       color: #DC3E2F!important;
       } 
       .sale span.oldprice {
@@ -595,3 +595,13 @@ float:right;
     .banner a.button{float:none;}
     .logo-container {text-align: center;}
   }
+
+/* Extra styles */
+
+.border-bottom {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.padding-bottom {
+  padding-bottom: 40px;
+}

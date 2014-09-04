@@ -19,12 +19,12 @@
   <div class="short-description {{ on_sale ? 'sale' : null }}">
     <h2>{{ product.name }}</h2>
     <span>
-      <a href="#"><i> <!-- Remove the link here -->
+      <i> <!-- Remove the link here -->
         {% if on_sale %}
          <span class="oldprice">{{ product.fullPrice|currency }}</span>
         {% endif %}
         {{ product.price|currency }}
-      </i></a>
+      </i>
     </span>
   </div>
 
