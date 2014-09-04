@@ -14,7 +14,7 @@ customFields:
     salePriceColor: { type: color, title: 'Sale Price Color', default: '#DC3E2F', comment: 'Color used for the sale price on the product page (old price is crossed out).' }
     saleBadgeColor: { type: color, title: 'Sale Badge Color', default: '#DC3E2F', comment: 'Color used for the sale badge displayed in product lists, when a product is on sale.' }
     buttonColor: { type: color, title: 'Button Color', default: '#DC3E2F', comment: 'Color used for Add To Cart and Checkout buttons.' }
-    buttonHoverColor: { type: color, title: 'Button Color', default: '#b92c1f', comment: 'Button color when you hover your mouse cursor over.' }
+    buttonHoverColor: { type: color, title: 'Button Hover Color', default: '#b92c1f', comment: 'Button color when you hover your mouse cursor over.' }
     buttonBorderColor: { type: color, title: 'Button Border Color', default: '#DC3E2F', comment: 'Border color for buttons.' }
     faviconImage: { type: image, title: 'Favicon Image', default: '@images/favicon.ico', comment: 'Upload your favicon. Recommended dimmensions of 16px by 16px. Should be .ico file.' }
 ---
