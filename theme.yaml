@@ -1,6 +1,6 @@
 ---
 name: 'Zest Theme'
-author: LemonStand
+author: 'LemonStand'
 website: 'https://lemonstand.com'
 engine: twig
 404: '404'
@@ -18,3 +18,5 @@ customFields:
     buttonBorderColor: { type: color, title: 'Button Border Color', default: '#DC3E2F', comment: 'Border color for buttons.' }
     faviconImage: { type: image, title: 'Favicon Image', default: '@images/favicon.png', comment: 'Upload your favicon. Recommended dimmensions of 16px by 16px. You must use a .png file.' }
 ---
+
+
