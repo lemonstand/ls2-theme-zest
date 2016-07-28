@@ -7,48 +7,52 @@
       
       <div class="row">
         <div class="six columns">
-          <label for="billing_firstName">First Name</label>
+          <label for="billing_firstName">First Name *</label>
           <input type="text" name="billingInfo[firstName]" id="billing_firstName" value="{{ billingInfo.firstName }}"/>
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="billing_lastName">Last Name</label>
+          <label for="billing_lastName">Last Name *</label>
           <input type="text" name="billingInfo[lastName]" id="billing_lastName" value="{{ billingInfo.lastName }}"/>
           <span class="error"></span>
         </div>
       </div>
       <div class="row">
         <div class="six columns">
-          <label for="billing_email">E-mail Address</label>
+          <label for="billing_email">E-mail Address *</label>
           <input type="text" name="billingInfo[email]" id="billing_email" value="{{ billingInfo.email }}" />
           <span class="error"></span>
         </div>
+
         <div class="six columns">
-          <label for="billing_phone">Phone Number</label>
+          <label for="billing_phone">Phone Number *</label>
           <input type="text" name="billingInfo[phone]" id="billing_phone" value="{{ billingInfo.phone }}"/>
           <span class="error"></span>
         </div>
       </div>
 
-      <label for="billing_address">Address</label>
+
+      
+
+      <label for="billing_address">Address *</label>
       <textarea id="billing_address" name="billingInfo[streetAddressLine1]">{{ billingInfo.streetAddressLine1 }}</textarea>
       <span class="error"></span>
 
       <div class="row">
         <div class="six columns">
-          <label for="billing_city">City</label>
+          <label for="billing_city">City *</label>
           <input type="text" name="billingInfo[city]" id="billing_city" value="{{ billingInfo.city }}"/>
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="billing_postalCode">Zip Code</label>
+          <label for="billing_postalCode">Zip Code *</label>
           <input type="text" id="billing_postalCode" name="billingInfo[postalCode]" value="{{ billingInfo.postalCode }}"/>
           <span class="error"></span>
         </div>
       </div>
       <div class="row">
         <div class="six columns">
-          <label for="billing_country">Country</label>
+          <label for="billing_country">Country *</label>
           <!-- 
             The state selector updates automatically when the country changes. 
             See app.js for the implementation details. 
@@ -61,7 +65,7 @@
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="billing_state">State</label>
+          <label for="billing_state">State *</label>
           <select id="billing_state" name="billingInfo[stateId]" data-ajax-refresh > 
             {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
           </select>
@@ -69,6 +73,7 @@
         </div>
       </div>
     </div>
+
     
     <div class="six columns">
       <h3 class="inline-block">Shipping Information</h3> 
@@ -78,42 +83,42 @@
 
       <div class="row">
         <div class="six columns">
-          <label for="shipping_firstName">First Name</label>
+          <label for="shipping_firstName">First Name *</label>
           <input type="text" name="shippingInfo[firstName]" id="shipping_firstName" value="{{ shippingInfo.firstName }}"/>
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="shipping_lastName">Last Name</label>
+          <label for="shipping_lastName">Last Name *</label>
           <input type="text" name="shippingInfo[lastName]" id="shipping_lastName" value="{{ shippingInfo.lastName }}"/>
           <span class="error"></span>
         </div>
       </div>
       <div class="row">
         <div class="twelve columns">
-          <label for="shipping_phone">Phone Number</label>
+          <label for="shipping_phone">Phone Number *</label>
           <input type="text" name="shippingInfo[phone]" id="shipping_phone" value="{{ shippingInfo.phone }}"/>
           <span class="error"></span>
         </div>
       </div>
       
-      <label for="shipping_address">Address</label>
+      <label for="shipping_address">Address *</label>
       <textarea name="shippingInfo[streetAddressLine1]" id="shipping_address">{{ shippingInfo.streetAddressLine1 }}</textarea>
       <span class="error"></span>
       <div class="row">
         <div class="six columns">
-          <label for="shipping_city">City</label>
+          <label for="shipping_city">City *</label>
           <input type="text" name="shippingInfo[city]" id="shipping_city" value="{{ shippingInfo.city }}"/>
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="shipping_postalCode">Zip Code</label>
+          <label for="shipping_postalCode">Zip Code *</label>
           <input type="text" name="shippingInfo[postalCode]" id="shipping_postalCode" value="{{ shippingInfo.postalCode }}"/>
           <span class="error"></span>
         </div>
       </div>
       <div class="row">
         <div class="six columns">
-          <label for="shipping_country">Country</label>
+          <label for="shipping_country">Country *</label>
           <select id="shipping_country" name="shippingInfo[countryId]" data-state-selector="#shipping_state" data-current-state="{{ shippingInfo.stateId }}" >
             {% for country in countries %}
               <option {{ option_state(shippingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
@@ -122,12 +127,19 @@
           <span class="error"></span>
         </div>
         <div class="six columns">
-          <label for="shipping_state">State</label>
+          <label for="shipping_state">State </label>
           <select id="shipping_state" name="shippingInfo[stateId]" data-ajax-refresh > 
             {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shippingInfo.stateId}) }}
           </select>
           <span class="error"></span>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="twelve columns">
+      <div class="left">
+        <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>Receive promotional emails
       </div>
     </div>
   </div>
