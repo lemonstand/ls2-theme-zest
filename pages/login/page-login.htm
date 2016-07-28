@@ -70,9 +70,9 @@ url: /login
               <span class="error">
             </div>
           </div>
+          <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/> Receive promotional emails<br><br>
           <input type="hidden" name="autologin" value="1" />
           <input type="hidden" name="redirect" value="{{ site_url('registered') }}"/>
-          <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>Recieve promotional emails<br><br>
           <input type="submit" class="button" value="Submit"/>
         {{ close_form() }}
       </div>
