@@ -138,10 +138,15 @@
   </div>
   <div class="row"> 
     <div class="twelve columns">
+      <div class="left">
+        <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>Receive promotional emails
+      </div>
+    </div>
+  </div>
+  <div class="row"> 
+    <div class="twelve columns">
       <div class="right">
         <!-- See the onSetBillingAndShippignInfo AJAX handler implementation on the Checkout page's AJAX tab -->
-        <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>Recieve promotional emails
-        <br><br>
         <a class="button" href="#" data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout, #breadcrumbs-area=shop-checkout-progress, #mini-cart=shop-minicart">Next step</a>
       </div>
     </div>
