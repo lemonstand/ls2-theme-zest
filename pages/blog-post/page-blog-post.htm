@@ -7,12 +7,21 @@ name: 'Blog Post'
 url: /blog/:slug
 ---
 <div class="row">
+	<!-- BLOG -->
     <em class="twelve columns">In {{ post.type }} | {{ post.published_on | date("F j, Y") }}</em> 
     {{ post.body | unescape }}
     <p class="twelve columns">– {{ post.author_name }}</p>
-    <img src="{{ post.profile_image.thumbnail(252, 'auto')|default('http://placehold.it/1000x365') }}" height="200" width="200"/>
-    {{ post.user.user_bio|unescape }}
-    <a href="{{ post.user.getSocialLink("facebook") }}"><img src="{{ 'images/facebook.png'|theme_resource }}"/></a>
-    <a href="{{ post.user.getSocialLink("twitter") }}"><img src="{{ 'images/twitter.png'|theme_resource }}"/></a>
-    <a href="{{ post.user.getSocialLink("instagram") }}"><img src="{{ 'images/instagram.png'|theme_resource }}"/></a>
+    <!-- BIO -->
+	<div class="bio-container">
+	    <img class="img-circle" src="{{ post.profile_image.thumbnail(252, 'auto')|default('http://placehold.it/1000x365') }}" style="height: 100px; width: 100px;"/>
+	    <strong>{{ post.author_name }}</strong>
+	    <span class="social-links">
+		    <a href="{{ post.user.getSocialLink("facebook") }}"><img src="{{ theme.facebookImage.thumbnail('auto', 'auto') }}"/></a>
+		    <a href="{{ post.user.getSocialLink("twitter") }}"><img src="{{ theme.twitterImage.thumbnail('auto', 'auto') }}"/></a>
+		    <a href="{{ post.user.getSocialLink("instagram") }}"><img src="{{ theme.instagramImage.thumbnail('auto', 'auto') }}"/></a>
+	    </span>
+		<div class="author-bio">
+			{{ post.user.user_bio|unescape }}
+		</div>
+	</div>
 </div>
