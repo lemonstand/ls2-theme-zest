@@ -629,4 +629,17 @@ strong {
   color: #4a4a4a; 
   display: inline-block;
   padding-left: 1px;
-  margin-top: 1px; }
+  margin-top: 1px;
+  margin-left: 5px;
+  width: 16px;
+  height: 16px; }
+
+.social-links a:nth-of-type(1) {
+   background: url("../images/social.png") 0 0;
+}
+.social-links a:nth-of-type(2) {
+   background: url("../images/social.png") 16px 0;
+}
+.social-links a:nth-of-type(3) {
+   background: url("../images/social.png") 32px 0;
+}
