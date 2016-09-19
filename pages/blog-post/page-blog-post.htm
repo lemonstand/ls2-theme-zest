@@ -8,7 +8,7 @@ url: /blog/:slug
 ---
 <div class="row">
     <!-- BLOG -->
-    <img src="{{ post.featured_image.thumbnail(1000, 'auto')|default('http://placehold.it/1000x365') }}" width="1000"/>
+    <img src="{{ post.featured_image.thumbnail(1000, 'auto')|default('http://placehold.it/1000x365') }}" width="1000" alt="{{ post.featured_image.alt }}"/>
     <em class="twelve columns">In {{ post.type }} | {{ post.published_on | date("F j, Y") }}</em> 
     {{ post.body | unescape }}
     <!-- BIO -->
