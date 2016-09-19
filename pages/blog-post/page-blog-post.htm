@@ -7,7 +7,18 @@ name: 'Blog Post'
 url: /blog/:slug
 ---
 <div class="row">
+    <!-- BLOG -->
+    <img src="{{ post.featured_image.thumbnail(1000, 'auto')|default('http://placehold.it/1000x365') }}" width="1000"/>
     <em class="twelve columns">In {{ post.type }} | {{ post.published_on | date("F j, Y") }}</em> 
     {{ post.body | unescape }}
     <p class="twelve columns">– {{ post.author_name }}</p>
+    <!-- BIO -->
+	<div class="bio-container">
+	    <img class="img-circle" src="{{ post.profile_image.thumbnail(252, 'auto')|default('http://placehold.it/100x100') }}" style="height: 100px; width: 100px;"/>
+	    <strong>{{ post.author_name }}</strong>
+	    {{ post.user.getSocialLinks() }}
+		<div class="author-bio">
+			{{ post.user.user_bio|unescape }}
+		</div>
+	</div>
 </div>
