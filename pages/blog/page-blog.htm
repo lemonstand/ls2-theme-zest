@@ -14,7 +14,7 @@ url: /blog
                 {% set publishedPosts = publishedPosts + 1 %}
             {% endif %}
             <div>
-                <h2>{{ post.title }}</h2>
+                <h2><a href="blog/{{ post.guid }}">{{ post.title }}</a></h2>
                 <div>{{ post.excerpt | unescape }}</div>
                 <div><a href="blog/{{ post.guid }}">Read More</a></div>
             </div>
