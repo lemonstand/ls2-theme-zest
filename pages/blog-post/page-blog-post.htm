@@ -19,7 +19,7 @@ url: /blog/:slug
 	        <img class="img-circle" src="{{ profile_image.thumbnail(252, 'auto')|default('http://placehold.it/100x100') }}" style="height: 100px; width: 100px;" alt="{{ profile_image.alt }}"/>
 	    {% endif %}
 	    <strong>{{ post.author_name }}</strong>
-	    {{ post.user.getSocialLinks() }}
+	    {{ post.user.getSocialLinks()|unescape }}
 		<div class="author-bio">
 	        {{ post.user.user_bio|unescape }}
 		</div>
