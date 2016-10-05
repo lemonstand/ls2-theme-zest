@@ -31,11 +31,12 @@
         </div>
       </div>
 
-
-      
-
-      <label for="billing_address">Address *</label>
+      <label for="billing_address">Address line 1 *</label>
       <textarea id="billing_address" name="billingInfo[streetAddressLine1]">{{ billingInfo.streetAddressLine1 }}</textarea>
+      <span class="error"></span>
+
+      <label for="billing_address">Address line 2</label>
+      <textarea id="billing_address" name="billingInfo[streetAddressLine1]">{{ billingInfo.streetAddressLine2 }}</textarea>
       <span class="error"></span>
 
       <div class="row">
@@ -101,9 +102,14 @@
         </div>
       </div>
       
-      <label for="shipping_address">Address *</label>
+      <label for="shipping_address">Address line 1 *</label>
       <textarea name="shippingInfo[streetAddressLine1]" id="shipping_address">{{ shippingInfo.streetAddressLine1 }}</textarea>
       <span class="error"></span>
+
+      <label for="shipping_address">Address line 2</label>
+      <textarea name="shippingInfo[streetAddressLine1]" id="shipping_address">{{ shippingInfo.streetAddressLine2 }}</textarea>
+      <span class="error"></span>
+
       <div class="row">
         <div class="six columns">
           <label for="shipping_city">City *</label>
