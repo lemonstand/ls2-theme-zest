@@ -20,7 +20,7 @@ url: /blog/:slug
 	    {% endif %}
 	    <strong>{{ post.author_name }}</strong>
 	    <ul class="social-links">
-		    {% for link in post.user.getSocialLinks() %}
+		    {% for link in post.user.getSocialProfiles() %}
 		        <li class="{{ link.name }}">
 		            <a href="{{ link.link }}"><i class="icon icon-{{ link.name }}"></i><span>{{ link.name }}</span></a>
 		        </li>
