@@ -12,16 +12,17 @@
       {% endfor %}
     </ul>
     {% endif %}
-
-      <div id="sharrre" data-title="sharrre">
+      <div class="social social-links">
+        <div id="sharrre" data-title="sharrre">
           <div class="facebook"></div>
           <div class="twitter"></div>
           <div class="googleplus"></div>
           <div class="pinterest"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 <div class="six columns description">
   <div class="short-description {{ on_sale ? 'sale' : null }}">
     <h2>{{ product.name }}</h2>
@@ -66,15 +67,15 @@
 
       {% if product_rating.total_reviews %}
         {{ partial('shop-product-review-view') }}
-        
+
         <!-- View Review -->
         <a id="view-review" href="#">View Review</a>
         <input class="modal-state" id="modal-2" type="checkbox" style="display: none;">
         <!-- Write Review -->
         <a id="write-review" href="#" style="float:right;">Write Review</a>
         <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
-        
-        
+
+
         <!--
         <label class="modal-trigger write-review" for="modal-1">
           <h2>write review</h2>
@@ -86,8 +87,8 @@
         </label>
         <input class="modal-state" id="modal-1" type="checkbox" />-->
       {% endif %}
-      
-      
+
+
   </div>
 
   {{ partial('shop-product-options') }}

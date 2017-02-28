@@ -9,7 +9,7 @@ url: '/product/:urlName'
 <div class="row">
 
   <div class="content twelve columns">
-  
+
   {{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
 
     {% if product %}
@@ -17,9 +17,9 @@ url: '/product/:urlName'
     <div class="row" id="product-page">
       {{ partial('shop-product') }}
     </div>
-        
+
     {% if product.related.count %}
-    
+
     <div class="related-items product-list twelve columns">
       <h3>Related Items</h3>
       <div class="row">
@@ -35,13 +35,13 @@ url: '/product/:urlName'
         </ul>
       </div>
     </div>
-      
+
       {% endif %}
-    
+
     {% else %}
-    
+
     <h2>We are sorry, the requested product was not found.</h2>
-    
+
     {% endif %}
 
   {{ close_form() }}
