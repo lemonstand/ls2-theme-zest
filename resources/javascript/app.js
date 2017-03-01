@@ -21,60 +21,6 @@
     $.fn.foundationClearing         ? $doc.foundationClearing() : null;
 
     $.fn.placeholder                ? $('input, textarea').placeholder() : null;
-
-    var base = $('base').attr('href');
-	  var share_url = base + 'sharrre/';
-
-    $('#sharrre .twitter').sharrre({
-    	template: '<button class="twitter button"><i class="fi-social-twitter medium"></i> &nbsp; {total}</button>',
-    	share: {
-    		twitter: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('twitter');
-    	}
-    });
-    $('#sharrre .facebook').sharrre({
-    	template: '<button class="facebook button"><span aria-hidden="true"><i class="fi-social-facebook medium"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		facebook: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('facebook');
-    	}
-    });
-    $('#sharrre .googleplus').sharrre({
-    	template: '<button class="google button"><span aria-hidden="true"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		googlePlus: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('googlePlus');
-    	},
-    	urlCurl: share_url
-    });
-    $('#sharrre .pinterest').sharrre({
-    	template: '<button class="button"><span aria-hidden="true"><i class="icon-pinterest"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		pinterest: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('pinterest');
-    	},
-    	urlCurl: share_url
-    });
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -99,7 +45,7 @@
 //
 
 (function ($) {
-  //
+  // 
   // Automatically apply Foundation custom form styles when an AJAX request finishes
   //
   $(window).on('onAfterAjaxUpdate', function(){
@@ -108,7 +54,7 @@
   });
 
   $(document).ready(function() {
-    //
+    // 
     // Handle thumbnail clicks on the Product page
     //
     $('#product-page').on('click', 'div.item-images ul a', function(){
@@ -127,7 +73,7 @@
           extraFields: {'set_coupon_code': 1}
         });
       }
-    })
+    }) 
 
     //
     // Handle the Enter key in the Quantity field
@@ -144,8 +90,8 @@
     // Handle the shipping option radio button clicks
     //
     $('#checkout-page').on('change', '#shipping-methods input', function(){
-      // When the shipping method is shipping we want to update the
-      // order totals area on the Checkout page. The native Checkout
+      // When the shipping method is shipping we want to update the 
+      // order totals area on the Checkout page. The native Checkout 
       // action does all the calculations.
       //
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
@@ -184,6 +130,110 @@
           }
       });
     })
+
+    //
+    // handle classing footer and header menu
+    //
+    $('.footer-menu').find("ul").first().addClass("nav-bar");
+    $('.header-menu-bar').find("ul").first().addClass("nav-bar nav-bar-user");
+
+    //
+    // Handle responsive nav for mobile view
+    //
+    $('.header-menu-bar-mobile .icon').on("click", function(){
+      $('.header-menu-bar-mobile-dropdown').toggleClass("menu-show");
+    });
+
+    //
+    // Star rating
+    //
+    $('.rating > span').click(function() {
+        var currentId = $(this).attr('id');
+        if ( currentId === 'hate' ) {
+            $('#hate').addClass('select');
+            $( '#dont-like, #ok, #like, #love' ).removeClass('select');
+            $('.rating > p').text( 'I hate it' );
+            $("#item_rating").val('1');
+        }
+        if ( currentId === 'dont-like' ) {
+            $( '#hate, #dont-like' ).addClass('select');
+            $( '#ok, #like, #love' ).removeClass('select');
+            $('.rating > p').text( 'I don\'t like it' );
+            $("#item_rating").val('2');
+        }
+        if ( currentId === 'ok' ) {
+            $( '#hate, #dont-like, #ok' ).addClass('select');
+            $( '#like, #love' ).removeClass('select');
+            $('.rating > p').text( 'It\'s ok' );
+            $("#item_rating").val('3');
+        }
+        if ( currentId === 'like' ) {
+            $( '#hate, #dont-like, #ok, #like' ).addClass('select');
+            $( '#love' ).removeClass('select');
+            $('.rating > p').text( 'I like it' );
+            $("#item_rating").val('4');
+        }
+        if ( currentId === 'love' ) {
+            $( '#hate, #dont-like, #ok, #like, #love' ).addClass('select');
+            $('.rating > p').text( 'I love it' );
+            $("#item_rating").val('5');
+        }
+        console.log($('#item_rating').val());
+    });
+
+    //
+    // Review Modal
+    //
+    $(function() {
+      $("#modal-1").on("change", function() {
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(".modal-form-fade-screen").addClass("modal-fade-open");
+          console.log("modal-1 activated!");
+        } else {
+          $("body").removeClass("modal-open");
+          $(".modal-form-fade-screen").removeClass("modal-fade-open");
+        }
+      });
+      $("#modal-2").on("change", function() {
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(".modal-view-fade-screen").addClass("modal-fade-open");
+          console.log("modal-2 activated!");
+        } else {
+          $("body").removeClass("modal-open");
+          $(".modal-view-fade-screen").removeClass("modal-fade-open");
+        }
+      });
+
+      //
+      // Change from view-review modal to write-review modal
+      //
+      $("#write-review-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
+
+      //
+      // Change from Sign-Up modal to Sign-In modal and visa-versa
+      //
+      $("#sign-up-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-2").prop("checked", true).change();
+      })
+      $("#sign-in-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
+
+      $(".modal-fade-screen, .modal-close").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+      });
+
+      $(".modal-inner").on("click", function(e) {
+        e.stopPropagation();
+      });
+    });
 
   });
 })(jQuery);

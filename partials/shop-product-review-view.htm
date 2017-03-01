@@ -1,0 +1,74 @@
+<div class="modal">
+  <label class="modal-trigger" for="modal-2">
+    <h2>view</h2>
+  </label>
+  <input class="modal-state" id="modal-2" type="checkbox" />
+  <div class="modal-fade-screen modal-view-fade-screen">
+    <div class="modal-inner">
+      <div class="modal-close" for="modal-2"></div>
+      <h1> {{ product.name }}</h1>
+
+        {% set product_rating = product.rating() %}
+        <p>
+            {% if product_rating.total_reviews %}
+                <span style="margin-right: -4px">
+                {% for i in range(1, product_rating.average_int) %}&starf;{% endfor %}
+                </span>
+                {% if product_rating.average_int != 5 %}
+                    {% for i in range(1, 5 - product_rating.average_int) %}&star;{% endfor %} 
+                {% endif %}
+                Based on {{ product_rating.total_reviews }} 
+                {% if product_rating.total_reviews == 1 %} review {% else %} reviews {% endif %}
+            {% endif %}
+        </p>
+        <a class="blue" href="#"  id="write-review-inview"><strong>Write a Review</strong></a>
+
+
+        
+        <div class="reviews">
+            
+
+        
+                {% for review in product.reviews() %}
+                    
+                    {% if review.item_rating == 5 %}
+                        <div class="review-rating">&starf;&starf;&starf;&starf;&starf;</div>
+                    {% endif %}
+                    {% if review.item_rating == 4 %}
+                        <div class="review-rating">&starf;&starf;&starf;&starf;&star;</div>
+                    {% endif %}
+                    {% if review.item_rating == 3 %}
+                        <div class="review-rating">&starf;&starf;&starf;&star;&star;</div>
+                    {% endif %}
+                    {% if review.item_rating == 2 %}
+                        <div class="review-rating">&starf;&starf;&star;&star;&star;</div>
+                    {% endif %}
+                    {% if review.item_rating == 1 %}
+                        <div class="review-rating">&starf;&star;&star;&star;&star;</div>  
+                    {% endif %}
+                    
+                    
+                        <p class="review-date">{{ review.created_at|date('M jS, Y') }}</p>
+                        
+
+
+                        
+                        <p><strong>{{ review.title }}</strong></p>
+                        <p><em>{{ review.comment }}</em></p>
+
+
+                        <p>{{ review.from_name }}</p>
+
+                    
+                    
+                    <hr>
+
+                {% endfor %}
+                
+
+            
+        </div>
+
+    </div>
+  </div>
+</div>

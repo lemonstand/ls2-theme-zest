@@ -25,7 +25,7 @@
     {% else %}
     <td class="narrow">{{ item.quantity }}</td>
     {% endif %}
-    <td class="narrow"><i>{{ item.fullPrice()|currency }}</i></td> 
+    <td class="narrow"><i>{{ item.price()|currency }}</i></td> 
     {% if cart.getDiscountTotal() > 0 %}
       <td class="narrow"><i>{{ item.totalDiscount()|currency }}</i></td>
       <td class="narrow"><i>{{ item.price()|currency }}</i></td>

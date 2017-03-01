@@ -1,5 +1,5 @@
 <header>
-  <div class="row topline">
+  <div class="row">
     <div class="six columns login">
       {% if customer %}
         Welcome, {{ customer.first_name }}!
@@ -19,15 +19,17 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="four columns logo-container">
         <a href="{{ site_url('/') }}"><img src="{{ theme.logoImage.thumbnail('auto', 'auto') }}" alt="" class="logo"></a>
     </div>
-    <div class="eight columns">
+    <div class="eight columns header-menu-bar">
+      {{ widget_block("header-menu") }}
       <ul class="nav-bar">
         {% set active_page = globals.active_page|default('home') %}
         <li class="{{ active_page == 'home' ? 'active' : null }}"><a href="{{ site_url('/') }}">Home</a></li>
-        <li class="{% if categories.count %}has-flyout{% endif %} {{ active_page == 'shop' ? 'active' : null }}">
+        <li class="{% if categories.count %}has-flyout{% endif %} {{ active_page == 'shop' ? 'active' : null }} right-border-li">
           <a href="{{ site_url('shop') }}">Shop</a>
           {% if categories.count %}
               <a class="flyout-toggle" href="{{ site_url('shop') }}"><span> </span></a>
@@ -40,16 +42,48 @@
               </ul>
           {% endif %}
         </li>
+        <li class="menu-item-seperator"></li>
         {% if customer %}
           <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ site_url('orders') }}">My Orders</a></li>
-          <li class="{{ active_page == 'profile' ? 'active' : null }}"><a href="{{ site_url('profile') }}">My Profile</a></li>
+          <li class="{{ active_page == 'profile' ? 'active' : null }}">
+            <a href="{{ site_url('profile') }}">My Profile</a>
+          </li>
+          <li class="menu-item-seperator"></li>
         {% endif %}
-        <li class="{{ active_page == 'about' ? 'active' : null }}"><a href="{{ site_url('about') }}">About</a></li>
-        <li class="{{ active_page == 'contact' ? 'active' : null }}"><a href="{{ site_url('contact') }}">Contact</a></li>
-        <li class="{{ active_page == 'blog' ? 'active' : null }}"><a href="{{ site_url('blog') }}">Blog</a></li>
       </ul>
     </div>
+
+
+    <div class="header-menu-bar-mobile">
+      <div class="icon"><a href="javascript:void(0)">&#9776;</a></div>
+      <div class="header-menu-bar-mobile-dropdown">
+        <ul>
+          <li><a href="{{ site_url('/') }}">Home</a></li>
+          <li><a href="{{ site_url('shop') }}">Shop</a></li>
+          <li class="mobile-subnav">
+            {% if categories.count %}
+              <ul>
+                {% tree categories %}
+                    {% for category in tree.items %}
+                        <li><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                {% endtree %}
+              </ul>
+            {% endif %}
+          </li>
+        </li>
+        {% if customer %}
+          <li><a href="{{ site_url('orders') }}">My Orders</a></li>
+          <li><a href="{{ site_url('profile') }}">My Profile</a></li>
+        {% endif %}
+        </ul>
+        {{ widget_block("header-menu") }}
+      </div>
+    </div>
+
   </div>
+  
+  
   
   {% if titleArea %}
     <div class="row secondhead">
