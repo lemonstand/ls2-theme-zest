@@ -1,4 +1,5 @@
 //
+//
 // Zurb Foundation stuff
 //
 ;(function ($, window, undefined) {
@@ -100,7 +101,7 @@
 //
 
 (function ($) {
-  //
+  // 
   // Automatically apply Foundation custom form styles when an AJAX request finishes
   //
   $(window).on('onAfterAjaxUpdate', function(){
@@ -109,7 +110,7 @@
   });
 
   $(document).ready(function() {
-    //
+    // 
     // Handle thumbnail clicks on the Product page
     //
     $('#product-page').on('click', 'div.item-images ul a', function(){
@@ -128,7 +129,7 @@
           extraFields: {'set_coupon_code': 1}
         });
       }
-    })
+    }) 
 
     //
     // Handle the Enter key in the Quantity field
@@ -145,8 +146,8 @@
     // Handle the shipping option radio button clicks
     //
     $('#checkout-page').on('change', '#shipping-methods input', function(){
-      // When the shipping method is shipping we want to update the
-      // order totals area on the Checkout page. The native Checkout
+      // When the shipping method is shipping we want to update the 
+      // order totals area on the Checkout page. The native Checkout 
       // action does all the calculations.
       //
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
@@ -240,6 +241,7 @@
     // Review Modal
     //
     $(function() {
+    
       $("#modal-1").on("change", function() {
         if ($(this).is(":checked")) {
           $("body").addClass("modal-open");
@@ -260,6 +262,18 @@
           $(".modal-view-fade-screen").removeClass("modal-fade-open");
         }
       });
+      
+      //
+      // Modal Links
+      //
+      $("#view-review").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-2").prop("checked", true).change();
+      })
+      $("#write-review").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
 
       //
       // Change from view-review modal to write-review modal
@@ -291,3 +305,4 @@
     });
 
   });
+})(jQuery);
