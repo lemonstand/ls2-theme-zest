@@ -68,12 +68,12 @@
       {% if product_rating.total_reviews %}
         {{ partial('shop-product-review-view') }}
 
+        <!-- Write Review -->
+        <a id="write-review" href="#">Write Review</a>
+        <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
         <!-- View Review -->
         <a id="view-review" href="#">View Review</a>
         <input class="modal-state" id="modal-2" type="checkbox" style="display: none;">
-        <!-- Write Review -->
-        <a id="write-review" href="#" style="float:right;">Write Review</a>
-        <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
 
 
         <!--
@@ -82,10 +82,9 @@
         </label>
         <input class="modal-state" id="modal-1" type="checkbox" />-->
       {% else %}
-        <!--<label class="modal-trigger" for="modal-1">
-          <h2>write review</h2>
-        </label>
-        <input class="modal-state" id="modal-1" type="checkbox" />-->
+        <!-- Write Review -->
+        <a id="write-review" href="#">Write Review</a>
+        <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
       {% endif %}
 
 
