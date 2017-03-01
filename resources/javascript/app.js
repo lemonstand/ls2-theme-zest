@@ -21,6 +21,60 @@
     $.fn.foundationClearing         ? $doc.foundationClearing() : null;
 
     $.fn.placeholder                ? $('input, textarea').placeholder() : null;
+
+    var base = $('base').attr('href');
+	  var share_url = base + 'sharrre/';
+
+    $('#sharrre .twitter').sharrre({
+    	template: '<button class="btn btn-mini btn-twitter"><i class="fi-social-twitter medium"></i> &nbsp; {total}</button>',
+    	share: {
+    		twitter: true
+    	},
+    	enableHover: false,
+    	enableTracking: true,
+    	click: function(api, options) {
+    		api.simulateClick();
+    		api.openPopup('twitter');
+    	}
+    });
+    $('#sharrre .facebook').sharrre({
+    	template: '<button class="btn btn-mini btn-facebook"><i class="fi-social-facebook medium"></i> &nbsp; {total}</button>',
+    	share: {
+    		facebook: true
+    	},
+    	enableHover: false,
+    	enableTracking: true,
+    	click: function(api, options) {
+    		api.simulateClick();
+    		api.openPopup('facebook');
+    	}
+    });
+    $('#sharrre .googleplus').sharrre({
+    	template: '<button class="btn btn-mini btn-googleplus"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</button>',
+    	share: {
+    		googlePlus: true
+    	},
+    	enableHover: false,
+    	enableTracking: true,
+    	click: function(api, options) {
+    		api.simulateClick();
+    		api.openPopup('googlePlus');
+    	},
+    	urlCurl: share_url
+    });
+    $('#sharrre .pinterest').sharrre({
+    	template: '<button class="btn btn-mini btn-pinterest"><i class="icon-pinterest"></i> &nbsp; {total}</button>',
+    	share: {
+    		pinterest: true
+    	},
+    	enableHover: false,
+    	enableTracking: true,
+    	click: function(api, options) {
+    		api.simulateClick();
+    		api.openPopup('pinterest');
+    	},
+    	urlCurl: share_url
+    });
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -45,7 +99,7 @@
 //
 
 (function ($) {
-  // 
+  //
   // Automatically apply Foundation custom form styles when an AJAX request finishes
   //
   $(window).on('onAfterAjaxUpdate', function(){
@@ -54,7 +108,7 @@
   });
 
   $(document).ready(function() {
-    // 
+    //
     // Handle thumbnail clicks on the Product page
     //
     $('#product-page').on('click', 'div.item-images ul a', function(){
@@ -73,7 +127,7 @@
           extraFields: {'set_coupon_code': 1}
         });
       }
-    }) 
+    })
 
     //
     // Handle the Enter key in the Quantity field
@@ -90,8 +144,8 @@
     // Handle the shipping option radio button clicks
     //
     $('#checkout-page').on('change', '#shipping-methods input', function(){
-      // When the shipping method is shipping we want to update the 
-      // order totals area on the Checkout page. The native Checkout 
+      // When the shipping method is shipping we want to update the
+      // order totals area on the Checkout page. The native Checkout
       // action does all the calculations.
       //
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
@@ -130,6 +184,6 @@
           }
       });
     })
-    
+
   });
 })(jQuery);
