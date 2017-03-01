@@ -1,4 +1,5 @@
 //
+//
 // Zurb Foundation stuff
 //
 ;(function ($, window, undefined) {
@@ -63,7 +64,7 @@
     	urlCurl: share_url
     });
     $('#sharrre .pinterest').sharrre({
-    	template: '<button class="button"><span aria-hidden="true"><i class="icon-pinterest"></i> &nbsp; {total}</span></button>',
+    	template: '<button class="pinterest button"><span aria-hidden="true"><i class="fi-social-pinterest medium"></i> &nbsp; {total}</span></button>',
     	share: {
     		pinterest: true
     	},
@@ -75,6 +76,7 @@
     	},
     	urlCurl: share_url
     });
+
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -184,6 +186,123 @@
           }
       });
     })
+
+    //
+    // handle classing footer and header menu
+    //
+    $('.footer-menu').find("ul").first().addClass("nav-bar");
+    $('.header-menu-bar').find("ul").first().addClass("nav-bar nav-bar-user");
+
+    //
+    // Handle responsive nav for mobile view
+    //
+    $('.header-menu-bar-mobile .icon').on("click", function(){
+      $('.header-menu-bar-mobile-dropdown').toggleClass("menu-show");
+    });
+
+    //
+    // Star rating
+    //
+    $('.rating > span').click(function() {
+        var currentId = $(this).attr('id');
+        if ( currentId === 'hate' ) {
+            $('#hate').addClass('select');
+            $( '#dont-like, #ok, #like, #love' ).removeClass('select');
+            $('.rating > p').text( 'I hate it' );
+            $("#item_rating").val('1');
+        }
+        if ( currentId === 'dont-like' ) {
+            $( '#hate, #dont-like' ).addClass('select');
+            $( '#ok, #like, #love' ).removeClass('select');
+            $('.rating > p').text( 'I don\'t like it' );
+            $("#item_rating").val('2');
+        }
+        if ( currentId === 'ok' ) {
+            $( '#hate, #dont-like, #ok' ).addClass('select');
+            $( '#like, #love' ).removeClass('select');
+            $('.rating > p').text( 'It\'s ok' );
+            $("#item_rating").val('3');
+        }
+        if ( currentId === 'like' ) {
+            $( '#hate, #dont-like, #ok, #like' ).addClass('select');
+            $( '#love' ).removeClass('select');
+            $('.rating > p').text( 'I like it' );
+            $("#item_rating").val('4');
+        }
+        if ( currentId === 'love' ) {
+            $( '#hate, #dont-like, #ok, #like, #love' ).addClass('select');
+            $('.rating > p').text( 'I love it' );
+            $("#item_rating").val('5');
+        }
+        console.log($('#item_rating').val());
+    });
+
+    //
+    // Review Modal
+    //
+    $(function() {
+
+      $("#modal-1").on("change", function() {
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(".modal-form-fade-screen").addClass("modal-fade-open");
+          console.log("modal-1 activated!");
+        } else {
+          $("body").removeClass("modal-open");
+          $(".modal-form-fade-screen").removeClass("modal-fade-open");
+        }
+      });
+      $("#modal-2").on("change", function() {
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(".modal-view-fade-screen").addClass("modal-fade-open");
+          console.log("modal-2 activated!");
+        } else {
+          $("body").removeClass("modal-open");
+          $(".modal-view-fade-screen").removeClass("modal-fade-open");
+        }
+      });
+
+      //
+      // Modal Links
+      //
+      $("#view-review").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-2").prop("checked", true).change();
+      })
+      $("#write-review").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
+
+      //
+      // Change from view-review modal to write-review modal
+      //
+      $("#write-review-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
+
+      //
+      // Change from Sign-Up modal to Sign-In modal and visa-versa
+      //
+      $("#sign-up-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-2").prop("checked", true).change();
+      })
+      $("#sign-in-inview").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-1").prop("checked", true).change();
+      })
+
+      $(".modal-fade-screen, .modal-close").on("click", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+      });
+
+      $(".modal-inner").on("click", function(e) {
+        e.stopPropagation();
+      });
+    });
 
   });
 })(jQuery);

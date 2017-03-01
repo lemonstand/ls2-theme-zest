@@ -1,0 +1,15 @@
+---
+action: 'cmscontent:page'
+template: inner
+protocol: all
+published: true
+name: 'Basic Page Template'
+url: '/page/:slug'
+---
+<div class="row">
+    <div class="content">
+      {% for content in cmsContent('page')|extended_sort('published_on', false) %}
+        {{ content.body | unescape }}
+      {% endfor %}
+    </div>
+</div>

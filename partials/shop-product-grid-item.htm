@@ -15,7 +15,15 @@
         <a href="{{ page_url }}">
           <i>
             {% if is_on_sale %}<span class="oldprice">{{ product.fullPrice|currency }}</span>{% endif %}
-            {{ product.price|currency }}
+            
+            {% if product.type == 'upsell' and product.discount %}
+                <span style="text-decoration: line-through;">
+                    {{ product.product_relation.base_price|currency }}
+                </span> <br />
+                {{ (product.product_relation.base_price - product.discount)|currency }}
+            {% else %}
+                {{ product.product_relation.base_price|currency }}
+            {% endif %}
           </i>
         </a>
       </span>
