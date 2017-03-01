@@ -647,7 +647,7 @@ strong {
 .social-links .icon-twitter {
   background: url("../images/social.png") 32px 0;
 }
-
+.social .sharrre {display: inline-block;}
 .product-info .social {
   margin: 0 -20px -20px;
   padding: 20px;
@@ -660,3 +660,15 @@ strong {
 .product-info .social #sharrre > div {
   display: inline-block;
 }
+
+.button.facebook {
+    background: #3b5998;
+    text-transform: uppercase; border:none; }
+
+.button.twitter {
+    background: #55acee;
+    text-transform: uppercase; border:none;}
+
+.button.google {
+    background: #d50f25;
+    text-transform: uppercase; border:none;}

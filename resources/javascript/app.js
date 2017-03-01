@@ -26,7 +26,7 @@
 	  var share_url = base + 'sharrre/';
 
     $('#sharrre .twitter').sharrre({
-    	template: '<button class="btn btn-mini btn-twitter"><i class="fi-social-twitter medium"></i> &nbsp; {total}</button>',
+    	template: '<button class="twitter button"><i class="fi-social-twitter medium"></i> &nbsp; {total}</button>',
     	share: {
     		twitter: true
     	},
@@ -38,7 +38,7 @@
     	}
     });
     $('#sharrre .facebook').sharrre({
-    	template: '<button class="btn btn-mini btn-facebook"><i class="fi-social-facebook medium"></i> &nbsp; {total}</button>',
+    	template: '<button class="facebook button"><span aria-hidden="true"><i class="fi-social-facebook medium"></i> &nbsp; {total}</span></button>',
     	share: {
     		facebook: true
     	},
@@ -50,7 +50,7 @@
     	}
     });
     $('#sharrre .googleplus').sharrre({
-    	template: '<button class="btn btn-mini btn-googleplus"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</button>',
+    	template: '<button class="google button"><span aria-hidden="true"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</span></button>',
     	share: {
     		googlePlus: true
     	},
@@ -63,7 +63,7 @@
     	urlCurl: share_url
     });
     $('#sharrre .pinterest').sharrre({
-    	template: '<button class="btn btn-mini btn-pinterest"><i class="icon-pinterest"></i> &nbsp; {total}</button>',
+    	template: '<button class="button"><span aria-hidden="true"><i class="icon-pinterest"></i> &nbsp; {total}</span></button>',
     	share: {
     		pinterest: true
     	},
