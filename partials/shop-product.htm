@@ -34,7 +34,9 @@
         {{ product.price|currency }}
       </i>
     </span>
-    <table class="volume-pricing-table" style="border: 1px solid #ccc; margin-top: 10px;">
+    <h4>Buy in bulk and save</h4>
+    <table class="volume-pricing-table">
+      <thead><tr><td>Quantity</td><td>Price</td></tr></thead>
       {% for priceTier in product.priceTiers %}
       <tr>
         <td>
@@ -70,11 +72,11 @@
         {{ partial('shop-product-review-view') }}
 
         <!-- View Review -->
-        <a id="view-review" href="#">View Review(s)</a>
+        <a id="view-review" href="">View Review(s)</a>
         <input class="modal-state" id="modal-2" type="checkbox" style="display: none;">&nbsp;&nbsp;|&nbsp;&nbsp;
 
         <!-- Write Review -->
-        <a id="write-review" href="#">Write Review</a>
+        <a id="write-review" href="">Write Review</a>
         <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
 
         <!--
@@ -84,7 +86,7 @@
         <input class="modal-state" id="modal-1" type="checkbox" />-->
       {% else %}
         <!-- Write Review -->
-        <a id="write-review" href="#">Write Review</a>
+        <a id="write-review" href="">Write Review</a>
         <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
       {% endif %}
 
@@ -124,7 +126,5 @@
     <h3>Description</h3>
     {{ product.description|unescape }}
   {% endif %}
-
-{{ partial('shop-product-upsells) }}
 
 </div>
