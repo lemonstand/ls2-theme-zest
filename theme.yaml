@@ -21,4 +21,6 @@ customFields:
     twitterImage: { type: image, title: 'Twitter Logo', default: '@images/twitter.png', comment: 'Upload your own social link icons! Recommended dimmensions of 16px by 16px.' }
     instagramImage: { type: image, title: 'Instagram Logo', default: '@images/instagram.png', comment: 'Upload your own social link icons! Recommended dimmensions of 16px by 16px.' }
     ratingToggle: { type: checkbox, title: 'Product Ratings', defaut: 'checked', comment: 'Activate product ratings for this theme.'}
+    socialToggle: { type: checkbox, title: 'Social Links', defaut: 'checked', comment: 'Activate social media links.'}
+
 ---
