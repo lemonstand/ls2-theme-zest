@@ -68,13 +68,13 @@
       {% if product_rating.total_reviews %}
         {{ partial('shop-product-review-view') }}
 
+        <!-- View Review -->
+        <a id="view-review" href="#">View Review</a>
+        <input class="modal-state" id="modal-2" type="checkbox" style="display: none;">&nbsp;&nbsp;|&nbsp;&nbsp;
+
         <!-- Write Review -->
         <a id="write-review" href="#">Write Review</a>
         <input class="modal-state" id="modal-1" type="checkbox" style="display: none;">
-        <!-- View Review -->
-        <a id="view-review" href="#">View Review</a>
-        <input class="modal-state" id="modal-2" type="checkbox" style="display: none;">
-
 
         <!--
         <label class="modal-trigger write-review" for="modal-1">

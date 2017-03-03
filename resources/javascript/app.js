@@ -51,7 +51,7 @@
     	}
     });
     $('#sharrre .googleplus').sharrre({
-    	template: '<button class="google button"><span aria-hidden="true"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</span></button>',
+    	template: '<button class="googleplus button"><span aria-hidden="true"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</span></button>',
     	share: {
     		googlePlus: true
     	},
