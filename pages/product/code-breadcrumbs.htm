@@ -9,7 +9,7 @@
     {% endfor %}
     <li><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a></li>
   {% endif %}
-  
+
   {% if product %}
     <li class="active"><a href="{{ '/product/' ~ product.url_name }}">{{ product.name }}</a></li>
   {% endif %}

@@ -1,4 +1,4 @@
 <a class="button right" href="{{ site_url('/cart') }}">
-  <span>{{ cart.getItemNum() }}</span> Items 
+  <span>{{ cart.getItemNum() }}</span> {% if cart.getItemNum() == 1 %}Item{% else %}Items{% endif %} 
   <span>{{ cart.getSubtotal()|currency }}</span>
 </a>

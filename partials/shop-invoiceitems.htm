@@ -3,7 +3,10 @@
     <th>Item</th>
     <th class="narrow">Quantity</th>
     <th class="narrow">Price</th>
-    <th class="narrow">Discount</th>
+    {% if invoice.getDiscountTotal() > 0 %}
+      <th class="narrow">Discount</th>
+      <th class="narrow">Unit Price</th>
+    {% endif %}
     <th class="narrow">Total</th>
   </tr>
   {% for shipment in invoice.shipments %}
@@ -19,8 +22,11 @@
         </div>
       </td>
       <td class="narrow"><i>{{ item.quantity|number_format(0) }}</i></td>
-      <td class="narrow"><i>{{ item.pivot.price|currency }}</i></td>
-      <td class="narrow"><i>{{ 0|currency }}</i></td>
+      <td class="narrow"><i>{{ item.base_price|currency }}</i></td>
+      {% if invoice.getDiscountTotal() > 0 %}
+        <td class="narrow"><i>{{ item.totalDiscount()|currency }}</i></td>
+        <td class="narrow"><i>{{ item.pivot.price|currency }}</i></td>
+      {% endif %}
       <td class="narrow"><i>{{ (item.quantity *item.pivot.price)|currency }}</i></td>
     </tr>
     {% endfor %}

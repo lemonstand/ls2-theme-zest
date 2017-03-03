@@ -6,11 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="Description" content="{{ page.description }}"/>
 <meta name="Keywords" content="{{ page.keywords }}"/>
+<link rel="icon" type="image/png" href="{{ theme.faviconImage.thumbnail('16', '16') }}"/>
 
 <title>{{ page.title }}</title>
 
 <link rel="stylesheet" type="text/css" href="/cms/core.css">
 <link rel="stylesheet" type="text/css" href="{{ 'css/foundation.min.css'|theme_resource }}">
+<link rel="stylesheet" type="text/css" href="{{ 'css/foundation-icons.css'|theme_resource }}">
+
 <link rel="stylesheet" type="text/css" href="{{ 'css/style.css'|theme_resource }}">
 
 <script type="text/javascript" src="{{ 'javascript/jquery.js'|theme_resource }}"></script>
@@ -18,3 +21,37 @@
 <script type="text/javascript" src="{{ 'javascript/foundation.min.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/app.js'|theme_resource }}"></script>
 <script type="text/javascript" src="/cms/core.js"></script>
+<script type="text/javascript" src="{{ 'javascript/jquery.sharrre.min.js'|theme_resource }}"></script>
+
+<!-- start custom theme options -->
+<style type="text/css">
+
+	a {
+		color: {{ theme.globalLinkColor }};
+	}
+
+		a:hover {
+			color: {{ theme.globalLinkHoverColor }};
+		}
+
+	a.button {
+		background-color: {{ theme.buttonColor }};
+		border-color: {{ theme.buttonBorderColor }};
+	}
+			a.button:hover {
+				background-color: {{ theme.buttonHoverColor }};
+			}
+
+	.sale i {
+		color: {{ theme.salePriceColor }}!important;
+	}
+
+	.sale span.salesign {
+		background-color: {{ theme.saleBadgeColor }};
+	}
+
+	.banner {
+		background: url('{{ theme.bannerImage.thumbnail('960', 'auto') }}') no-repeat;
+	}
+
+</style>

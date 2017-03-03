@@ -37,15 +37,20 @@
         </div>
       </div>
       
-      <a class="button" href="#" data-ajax-handler="shop:on_evalShippingRate" data-ajax-update="#shipping_options=shopestimatedshippingoptions">Calculate</a>
+      <a class="button" href="#" data-ajax-handler="shop:onEvalShippingRate" data-ajax-update="#shipping_options=shopestimatedshippingoptions">Calculate</a>
         
       <div id="shipping_options"></div>
     </div>
     
     <div class="three columns offset-by-three data-list align-right">
-      <p><strong>Discount applied:</strong> <i>{{ 0|currency }}</i></p>
-      <p><strong>Cart total:</strong> <i>{{ cart.getSubtotal()|currency }}</i></p>
-      <p class="subtotal"><strong>Estimated total:</strong>  <i>{{ cart.getTotal()|currency }}</i></p>
+      {% if totals.discountTotal > 0 %}
+        <p><strong>Coupon discount:</strong> <i>{{ totals.discountTotal|currency }}</i></p>
+      {% endif %}
+      <p><strong>Cart total:</strong> <i>{{ totals.subtotal|currency }}</i></p>
+      {% if totals.totalShippingQuote > 0 %}
+        <p><strong>Shipping:</strong> <i>{{ totals.totalShippingQuote|currency }}</i></p>
+      {% endif %}
+      <p class="subtotal"><strong>Estimated total:</strong>  <i>{{ totals.total|currency }}</i></p>
     </div>
   </div>  
   <div class="row">
@@ -55,7 +60,7 @@
       </div>
       <div class="six columns">
         <div class="right">
-          <input type="text" id="coupon" name="coupon" value="{{ coupon_code }}" placeholder="Coupon code" disabled />
+          <input type="text" id="coupon" name="coupon" value="{{ coupon_code }}" placeholder="Coupon code" />
         
           <a class="secondary button" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">Update cart</a>
           {% if customer %}

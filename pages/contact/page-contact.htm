@@ -37,3 +37,40 @@ url: /contact
     </div>
   </div>
 </div>
+
+<div class="row border-bottom padding-bottom">
+    <div class="six columns">
+        {{ flash() }}
+    
+        {{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
+            <h3>Send us a message</h3>
+        
+            <div class="row">
+                <div class="twelve columns">
+                    <label for="contact_email">E-mail Address *</label>
+                    <input type="text" id="contact_email" name="fields[email]" value=""/>
+                    <span class="error"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="twelve columns">
+                    <label for="contact_name">Your name *</label>
+                    <input type="text" id="contact_name" name="fields[name]" value=""/>
+                    <span class="error"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="twelve columns">
+                    <label for="contact_message">Message *</label>
+                    <textarea id="contact_message" name="fields[message]" value="" rows="10"></textarea>
+                    <span class="error"/>
+                </div>
+            </div>
+
+            <input type="submit" class="button" value="Submit"/>
+            <input type="text" name="hp" value="" style="display: none"/>
+        {{ close_form() }}
+    </div>
+</div>

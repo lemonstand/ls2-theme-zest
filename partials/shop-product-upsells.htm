@@ -1,0 +1,31 @@
+  {% if product.upsells.isEmpty() == false %}
+    <table class="product-list full-width">
+        <tr>
+        <th>Buy this, as well!</th>
+        <th class="narrow">Original Price</th>
+        <th class="narrow">Sale Price</th>
+        <th class="narrow"></th>
+        </tr>
+        {% for upsell in product.upsells %}
+        <tr>
+        <td>
+          <a class="hide-for-small" href="/product/{{ upsell.url_name }}"><img src="{{ upsell.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+          <div class="short-description">
+            <h3><a href="/product/{{ upsell.url_name }}">{{ upsell.name }}</a></h3>
+            {% set description = upsell.optionsString() %}
+            {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+          </div>
+        </td>
+        <td class="narrow"><i>{{ upsell.base_price|currency }}</i></td>
+        <td class="narrow"><i>{{ upsell.price|currency }}</i> </td>
+        <td class="narrow">
+            <a class="button"
+                href="#"
+                data-ajax-handler="shop:onAddToCart"
+                data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product"
+                data-ajax-extra-fields="upsellId='{{ upsell.id }}'"
+                >Buy Now</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
