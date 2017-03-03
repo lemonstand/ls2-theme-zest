@@ -902,3 +902,12 @@ strong {
 form.custom span.custom {
     display: none;
 }
+
+#blog-content ul>li {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+#blog-content ul>li strong{
+  float: none;
+}

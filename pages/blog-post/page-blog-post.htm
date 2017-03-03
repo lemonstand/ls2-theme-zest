@@ -16,7 +16,7 @@ url: /blog/:slug
       {% if featured_image %}
           <img src="{{ featured_image.thumbnail(1000, 'auto')|default('http://placehold.it/1000x365') }}" width="1000" alt="{{ featured_image.alt }}"/>
       {% endif %}
-      <div>
+      <div id="blog-content">
         {{ post.body | unescape }}
       </div>
       <!-- BIO -->
