@@ -49,6 +49,7 @@
 
   {{ partial('shop-product-attributes') }}
 
+  {% if theme.ratingToggle %}  
   <div class="product-rating-container">
   <!-- product ratings -->
       {% set product_rating = product.rating() %}
@@ -89,7 +90,7 @@
 
 
   </div>
-
+  {% endif %}
   {{ partial('shop-product-options') }}
   {{ partial('shop-product-extras') }}
 
