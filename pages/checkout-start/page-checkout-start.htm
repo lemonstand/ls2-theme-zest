@@ -57,7 +57,14 @@ url: /checkout-start
         <p>Continue checkout as guest. No sign up required.</p>
         <a class="button" href="{{ site_url('checkout') }}">Continue as guest</a>
       </div>
+
+      <div class="six columns" style="margin-right:80px;">
+        <h3>Don't have an account?</h3>
+        <p>Register for one today!</p>
+        <a class="button" href="{{ site_url('login') }}">Register</a>
+      </div>
     </div>
   </div>
 </div>
+
 {% endif %}
