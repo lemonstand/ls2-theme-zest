@@ -14,14 +14,27 @@
     {% endif %}
 
       {% if theme.socialToggle %}
-      <div class="social social-links">
-        <div id="sharrre" data-title="sharrre">
-          <div class="facebook"></div>
-          <div class="twitter"></div>
-          <!-- <div class="googleplus"></div> -->
-          <div class="pinterest"></div>
+        <div class="social social-links">
+          <button class="facebook button small share s_facebook">
+            <i class="fi-social-facebook"></i> &nbsp;
+            <span class='badge counter c_facebook'>&nbsp;</span>
+          </button>
+
+          <button class="twitter button small share s_twitter">
+              <i class="fi-social-twitter"></i>
+          </button>
+
+          <button class="google button small share s_plus">
+              <i class="fi-social-google-plus"></i> &nbsp;
+              <span class='badge counter c_plus'>&nbsp;</span>
+          </button>
+
+          <button class="pinterest button small share s_pinterest">
+              <i class="fi-social-pinterest"></i> &nbsp;
+              <span class='badge counter c_pinterest'>&nbsp;</span>
+          </button>
+
         </div>
-      </div>
       {% endif %}
     </div>
   </div>
@@ -91,9 +104,9 @@
     {{ partial('shop-product-options') }}
     {{ partial('shop-product-extras') }}
 
-  
-  
-  
+
+
+
 
     {% if product.enabled %}
       {% if not product.isOutOfStock() %}
@@ -140,7 +153,7 @@
             {% endfor %}
           </table>
         </div>
-      
+
       </li>
       {% endif %}
       {% if product.productAttributes.count %}
