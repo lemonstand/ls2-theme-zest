@@ -361,7 +361,7 @@ footer p {font-size: 12px;}
       flex-wrap: wrap;
       list-style: none;
       margin-top: 20px;
-      
+
     }
     .product-bulk h3, .product-attributes h3 {
       margin-bottom: 10px;
@@ -757,8 +757,8 @@ strong {
   display: inline-block;
 }
 
-.social-links span {
-  padding: 5px;
+.button i {
+  font-size: 16px;
 }
 
 .social-links .icon-facebook {
@@ -770,7 +770,6 @@ strong {
 .social-links .icon-twitter {
   background: url("../images/social.png") 32px 0;
 }
-.social .sharrre {display: inline-block;}
 .product-info .social {
   margin: 0 -20px -20px;
   padding: 20px;
@@ -794,6 +793,10 @@ strong {
 
 .button.twitter {
   background: #55acee;
+}
+
+.button.pinterest {
+  background: #ce2127;
 }
 
 .button.google {

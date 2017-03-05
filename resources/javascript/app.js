@@ -23,58 +23,13 @@
 
     $.fn.placeholder                ? $('input, textarea').placeholder() : null;
 
-    var base = $('base').attr('href');
-	  var share_url = base + 'sharrre/';
+    $('.share').ShareLink();
 
-    $('#sharrre .twitter').sharrre({
-    	template: '<button class="twitter button small"><i class="fi-social-twitter medium"></i> &nbsp; {total}</button>',
-    	share: {
-    		twitter: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('twitter');
-    	}
-    });
-    $('#sharrre .facebook').sharrre({
-    	template: '<button class="facebook button small"><span aria-hidden="true"><i class="fi-social-facebook medium"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		facebook: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('facebook');
-    	}
-    });
-    $('#sharrre .googleplus').sharrre({
-    	template: '<button class="googleplus button small"><span aria-hidden="true"><i class="fi-social-google-plus medium"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		googlePlus: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('googlePlus');
-    	},
-    	urlCurl: share_url
-    });
-    $('#sharrre .pinterest').sharrre({
-    	template: '<button class="pinterest button small"><span aria-hidden="true"><i class="fi-social-pinterest medium"></i> &nbsp; {total}</span></button>',
-    	share: {
-    		pinterest: true
-    	},
-    	enableHover: false,
-    	enableTracking: true,
-    	click: function(api, options) {
-    		api.simulateClick();
-    		api.openPopup('pinterest');
-    	},
-    	urlCurl: share_url
+    $('.counter').ShareCounter({
+      url: $(location).attr('href'),
+      class_prefix: 'c_',
+      display_counter_from: 0,
+      increment: true
     });
 
   });
