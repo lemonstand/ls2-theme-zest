@@ -242,21 +242,19 @@
     //
     $(function() {
 
-      $("#modal-1").on("change", function() {
+      $("#product-page").on("change", "#modal-1", function() {
         if ($(this).is(":checked")) {
           $("body").addClass("modal-open");
           $(".modal-form-fade-screen").addClass("modal-fade-open");
-          console.log("modal-1 activated!");
         } else {
           $("body").removeClass("modal-open");
           $(".modal-form-fade-screen").removeClass("modal-fade-open");
         }
       });
-      $("#modal-2").on("change", function() {
+      $("#product-page").on("change", "#modal-2", function() {
         if ($(this).is(":checked")) {
           $("body").addClass("modal-open");
           $(".modal-view-fade-screen").addClass("modal-fade-open");
-          console.log("modal-2 activated!");
         } else {
           $("body").removeClass("modal-open");
           $(".modal-view-fade-screen").removeClass("modal-fade-open");
@@ -266,14 +264,16 @@
       //
       // Modal Links
       //
-      $("#view-review").on("click", function() {
+      $("#product-page").on("click", "#view-review", function(e) {
+        e.preventDefault();
         $(".modal-state:checked").prop("checked", false).change();
         $("#modal-2").prop("checked", true).change();
-      })
-      $("#write-review").on("click", function() {
+      });
+      $("#product-page").on("click", "#write-review", function(e) {
+        e.preventDefault();
         $(".modal-state:checked").prop("checked", false).change();
         $("#modal-1").prop("checked", true).change();
-      })
+      });
 
       //
       // Change from view-review modal to write-review modal
@@ -281,7 +281,7 @@
       $("#write-review-inview").on("click", function() {
         $(".modal-state:checked").prop("checked", false).change();
         $("#modal-1").prop("checked", true).change();
-      })
+      });
 
       //
       // Change from Sign-Up modal to Sign-In modal and visa-versa
@@ -293,7 +293,7 @@
       $("#sign-in-inview").on("click", function() {
         $(".modal-state:checked").prop("checked", false).change();
         $("#modal-1").prop("checked", true).change();
-      })
+      });
 
       $(".modal-fade-screen, .modal-close").on("click", function() {
         $(".modal-state:checked").prop("checked", false).change();

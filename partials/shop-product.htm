@@ -6,14 +6,14 @@
     </div>
 
     {% if product.images.count > 1 %}
-    <ul class="row">
-      {% for image in product.images %}
-        <li class="four columns mobile-two"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
-      {% endfor %}
-    </ul>
+      <ul class="row">
+        {% for image in product.images %}
+          <li class="four columns mobile-two"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
+        {% endfor %}
+      </ul>
     {% endif %}
 
-      {% if theme.socialToggle %}
+    {% if theme.socialToggle %}
       <div class="social social-links">
         <div id="sharrre" data-title="sharrre">
           <div class="facebook"></div>
@@ -22,9 +22,9 @@
           <div class="pinterest"></div>
         </div>
       </div>
-      {% endif %}
-    </div>
+    {% endif %}
   </div>
+</div>
 
 <div class="six columns">
   <div class="short-description {{ on_sale ? 'sale' : null }}">
@@ -47,7 +47,6 @@
         </p>
 
         {% if product_rating.total_reviews %}
-          {{ partial('shop-product-review-view') }}
 
           <!-- View Review -->
           <a id="view-review" href="#">View Review(s)</a>
@@ -153,5 +152,5 @@
       {% endif %}
     </ul>
     {% endif %}
-</div>
+  </div>
 </div>

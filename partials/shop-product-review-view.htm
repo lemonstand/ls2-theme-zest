@@ -21,48 +21,39 @@
                 {% if product_rating.total_reviews == 1 %} review {% else %} reviews {% endif %}
             {% endif %}
         </p>
-        <a class="blue" href="#"  id="write-review-inview"><strong>Write a Review</strong></a>
+        <a class="blue" href="#" id="write-review-inview"><strong>Write a Review</strong></a>
 
-
-        
         <div class="reviews">
-            
-
-        
                 {% for review in product.reviews() %}
-                    
-                    {% if review.item_rating == 5 %}
-                        <div class="review-rating">&starf;&starf;&starf;&starf;&starf;</div>
-                    {% endif %}
-                    {% if review.item_rating == 4 %}
-                        <div class="review-rating">&starf;&starf;&starf;&starf;&star;</div>
-                    {% endif %}
-                    {% if review.item_rating == 3 %}
-                        <div class="review-rating">&starf;&starf;&starf;&star;&star;</div>
-                    {% endif %}
-                    {% if review.item_rating == 2 %}
-                        <div class="review-rating">&starf;&starf;&star;&star;&star;</div>
-                    {% endif %}
-                    {% if review.item_rating == 1 %}
-                        <div class="review-rating">&starf;&star;&star;&star;&star;</div>  
-                    {% endif %}
-                    
-                    
+                    <div>
+                        <strong>{{ review.title }}</strong>
+                        <br/>
+                        {% if review.item_rating == 5 %}
+                            <p class="review-rating">&starf;&starf;&starf;&starf;&starf;</p>
+                        {% endif %}
+                        {% if review.item_rating == 4 %}
+                            <p class="review-rating">&starf;&starf;&starf;&starf;&star;</p>
+                        {% endif %}
+                        {% if review.item_rating == 3 %}
+                            <p class="review-rating">&starf;&starf;&starf;&star;&star;</p>
+                        {% endif %}
+                        {% if review.item_rating == 2 %}
+                            <p class="review-rating">&starf;&starf;&star;&star;&star;</p>
+                        {% endif %}
+                        {% if review.item_rating == 1 %}
+                            <p class="review-rating">&starf;&star;&star;&star;&star;</p>  
+                        {% endif %}
                         <p class="review-date">{{ review.created_at|date('M jS, Y') }}</p>
                         
-
-
-                        
-                        <p><strong>{{ review.title }}</strong></p>
                         <p><em>{{ review.comment }}</em></p>
 
 
-                        <p>{{ review.from_name }}</p>
+                        <p> - {{ review.from_name }}</p>
 
-                    
-                    
-                    <hr>
-
+                        
+                        
+                        <hr>
+                    </div>
                 {% endfor %}
                 
 
