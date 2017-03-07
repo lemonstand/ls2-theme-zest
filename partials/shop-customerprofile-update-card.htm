@@ -1,0 +1,7 @@
+<div class="six columns">
+  {{ flash() }}
+  <h3>Update Card</h3>
+  {% for card in customer.cards %}
+  {{ customerCardForm('update', {card: card})}}
+  {% endfor %}
+</div>
