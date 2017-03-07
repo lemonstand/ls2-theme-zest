@@ -309,6 +309,8 @@ header {margin-top: 20px;}
     /* Breadcrumbs Left */
     .left ul.mybreadcrumbs li {padding: 15px 0 0;}
 
+    /* Breadcrumbs Product Page */
+    .product ul.mybreadcrumbs li {padding: 25px 0px 16px;}
 
 /* Footer */
 footer {padding: 20px 0;}
@@ -323,6 +325,7 @@ footer p {font-size: 12px;}
   /* Products */
   .product-title {
     margin-bottom: 0px;
+    font-size: 26px;
   }
   .product-list ul {margin-bottom: 0;}
   .product-list li {
