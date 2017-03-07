@@ -1,0 +1,145 @@
+<div class="row">
+    <!-- Subscription Products -->
+    <section id="subscription-billing-plan">
+        <h2>Subscription Products</h2>
+        {% if not subscription.products or not subscription.products.count %} 
+        <p class="flash info">Subscription Products Not Found</p>
+        {% else %} 
+        <div class="row">
+            <table class="product-list full-width">
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th class="narrow"></th>
+                </tr>
+                {% for subscriptionProduct in subscription.products %} {% set url = root_url('/product/'~subscriptionProduct.product.url_name) %} 
+                <tr>
+                    <td>
+                      <a class="hide-for-small" href="{{ url }}"><img src="{{ subscriptionProduct.product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+                      <div class="short-description">
+                        <h3><a href="{{ url }}">{{ subscriptionProduct.product.name }}</a></h3>
+                        {% set description = subscriptionProduct.optionsString() %}
+                        {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+                      </div>
+                    </td>
+                    <td>{{ subscriptionProduct.quantity }}</td>
+                    <td><a href="{{ url }}"><i>{{ subscriptionProduct.price|currency }}</i></a></td>
+                    <td class="narrow remove">
+                      <a href="#" 
+                        data-ajax-handler="subscriptions:subscription"
+                        data-ajax-update="#subscription-content=shop-subscription-content"
+                        data-ajax-extra-fields="deleteProduct='{{ subscriptionProduct.id }}'"
+                      >Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    </section>
+</div>
+<div class="row">
+    <!-- Billing Plan Selector -->
+    {#<h2>Billing Plan</h2>#}
+    {#<section id="subscription-update-message"> {{ flash() }} </section>#}
+    {#<section id="subscription-billing-plan">#}
+    {#    {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',#}
+    {#        'class': 'custom',#}
+    {#        'data-ajax-update': "#subscription-update-message=subscription-update-message",#}
+    {#        'data-validation-message' : ''#}
+    {#    }) }}#}
+    {#    <select id="billing_plan" name="billing_plan">#}
+    {#    {% for plan in billingPlans %}#}
+    {#        <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>#}
+    {#    {% endfor %}#}
+    {#    </select> #}
+    {#    <div class="row">#}
+    {#        <div class="twelwe columns"> <input type="submit" class="button" value="Update Billing Plan"/>#}
+    {#        <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>#}
+    {#        <input type="hidden" name="flash" value="Your subscription has been successfully updated."/>#}
+    {#        <input type="hidden" name="redirect" value="{{ root_url('/subscription/' ~ subscription.id) }}"/> </div>#}
+    {#    </div>#}
+    {#    {{ close_form() }} #}
+    {#</section>#}
+</div>
+<div class="row">
+    <!-- Add Products -->
+    {% if products.isEmpty() == false %}
+        <table class="product-list full-width">
+            <tr>
+            <th>Add Product To Subscription</th>
+            <th class="narrow">Price</th>
+            <th class="narrow"></th>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>
+                      <a class="hide-for-small" href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+                      <div class="short-description">
+                        <h3><a href="/product/{{ product.url_name }}">{{ product.name }}</a></h3>
+                        {% set description = product.optionsString() %}
+                        {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+                      </div>
+                    </td>
+                    <td class="narrow"><i>{{ product.price|currency }}</i> </td>
+                    <td class="narrow">
+                        <a class="button"
+                            href="#"
+                            data-ajax-handler="subscriptions:subscription"
+                            data-ajax-update="#subscription-content=shop-subscription-content"
+                            data-ajax-extra-fields="productId='{{ product.id }}'"
+                            >Add to subscription</a></td>
+                </tr>
+                {% if product.productVariants().isEmpty() == false %}
+                    {% for variant in product.productVariants() %}
+                        <tr>
+                            <td>
+                              <a class="hide-for-small" href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
+                              <div class="short-description">
+                                <h3><a href="/product/{{ product.url_name }}">{{ product.name }}</a></h3>
+                                {% set description = variant.optionsString() %}
+                                {% if description %}<p>{{ description|unescape }}</p>{% endif %}
+                              </div>
+                            </td>
+                            <td class="narrow"><i>{{ product.price|currency }}</i> </td>
+                            <td class="narrow">
+                                <a class="button"
+                                    href="#"
+                                    data-ajax-handler="subscriptions:subscription"
+                                    data-ajax-update="#subscription-content=shop-subscription-content"
+                                    data-ajax-extra-fields="productId='{{ product.id }}',variantId='{{ variant.id }}'"
+                                    >Add to subscription</a></td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+<div class="row">
+    <!-- Subscription Orders -->
+    <h2>Orders</h2>
+    {% if not subscription.orders or not subscription.orders.count %} 
+    <p class="flash info">Orders not found</p>
+    {% else %} 
+    <div class="row">
+        <table class="product-list full-width">
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+            {% for order in subscription.orders if not order.is_quote %} {% set url = root_url('/order/'~order.id) %} 
+            <tr>
+                <td><a href="{{ url }}">{{ order.number }}</a></a></td>
+                <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
+                <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
+                <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
+            </tr>
+            {% endfor %} 
+        </table>
+    </div>
+    {% endif %}
+</div>

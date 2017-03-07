@@ -1,0 +1,39 @@
+---
+action: 'subscriptions:subscription'
+template: inner
+protocol: all
+published: true
+name: Subscription
+url: '/subscription/:subscriptionId'
+---
+<div id="subscription-content">
+    {% if subscription %}
+        {{ partial('shop-subscription-content') }}
+        {% if subscription.card %}
+          <!-- Example - Drop-In Twig Helper on Subscription Page - Update Card From Subscription Page -->
+          {{ customerCardForm('update', {card: subscription.card})}}
+        {% else %}
+          <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+          {{ customerCardForm('add'})}
+        {% endif %}
+        <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
+        {% if cards is defined %}
+            <div class="row">
+                <form method="post" data-ajax-handler="subscriptions:onUpdateCard">
+                    {% for card in cards %}
+                    <div class="row">
+                          <label for="card-{{ card.id }}">{{ card.card_brand_method }} </label>
+                          <input class="custom-radio" name="shop_customer_card_id" value="{{ card.id }}" type="radio" id="card-{{ card.id }}" />
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Charge Subscription With This Card" class="button">
+                </form>
+            </div>
+        {% endif %}
+        <!-- End Cards -->
+    {% else %}
+      <div class="row">
+        <p class="flash error">Subscription not found</p>
+      </div>
+    {% endif %}
+</div>
