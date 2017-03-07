@@ -88,11 +88,15 @@
   {% if titleArea %}
     <div class="row secondhead">
       <div class="twelve columns omega">
-
-        <div id="breadcrumbs-area"><h2 class="left">{{ page.title }}</h2></div>
-        <div class="right">
-          {{ code_block('breadcrumbs') }}
-        </div>
+        {% if page.name == "Product" %}
+          <div id="breadcrumbs-area" class="product left">{{ code_block('breadcrumbs') }}</div>
+          <div class="right"></div>
+        {% else %}
+          <div id="breadcrumbs-area"><h2 class="left">{{ page.title }}</h2></div>
+          <div class="right">
+            {{ code_block('breadcrumbs') }}
+          </div>
+        {% endif %}
         <div class="clear"></div>
       </div>
     </div>
