@@ -14,7 +14,7 @@ url: '/subscription/:subscriptionId'
           {{ customerCardForm('update', {card: subscription.card})}}
         {% else %}
           <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-          {{ customerCardForm('add'})}
+          {{ customerCardForm('add') }}
         {% endif %}
         <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
         {% if cards is defined %}
