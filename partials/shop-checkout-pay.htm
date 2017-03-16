@@ -13,8 +13,9 @@
                 <div class="row">
                     <form method="post" data-ajax-handler="shop:onPay">
                         {% for card in cards %}
+                        {#{{ dump(card) }}#}
                         <div class="row">
-                              <label for="card-{{ card.id }}">{{ card.card_brand_method }} </label>
+                              <label for="card-{{ card.id }}"> {{ card.paymentMethod.name }}: {{ card.cardAndBrand }} </label>
                               <input class="custom-radio" name="payment_method_token" value="{{ card.token }}" type="radio" id="card-{{ card.id }}" />
                               <input type='hidden' name='payment_method_id' id='payment_method_id' value='{{ card.paymentMethod.id }}'>
                         </div>
@@ -30,10 +31,10 @@
                         options: {
                             number: {
                                 type: 'number',
-                                placeholder: 'Card numbero'
+                                placeholder: 'Card Number'
                             },
                             cvv: {
-                                placeholder: 'CVVee'
+                                placeholder: 'CVV'
                             },
                             full_name: {
                                 placeholder: 'Cardholder name'
@@ -42,9 +43,12 @@
                                 placeholder: 'MM/YYYY'
                             },
                             submit: {
-                                value: 'Pay via Credit Card'
+                                value: 'Pay via Credit Card',
+                                class: 'button'
                             },
-                            save_card: true
+                            save_card: {
+                                enabled: true
+                            }
                         }
                     },
                     paymentMethod
