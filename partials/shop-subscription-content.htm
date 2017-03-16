@@ -41,27 +41,27 @@
 </div>
 <div class="row">
     <!-- Billing Plan Selector -->
-    {#<h2>Billing Plan</h2>#}
-    {#<section id="subscription-update-message"> {{ flash() }} </section>#}
-    {#<section id="subscription-billing-plan">#}
-    {#    {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',#}
-    {#        'class': 'custom',#}
-    {#        'data-ajax-update': "#subscription-update-message=subscription-update-message",#}
-    {#        'data-validation-message' : ''#}
-    {#    }) }}#}
-    {#    <select id="billing_plan" name="billing_plan">#}
-    {#    {% for plan in billingPlans %}#}
-    {#        <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>#}
-    {#    {% endfor %}#}
-    {#    </select> #}
-    {#    <div class="row">#}
-    {#        <div class="twelwe columns"> <input type="submit" class="button" value="Update Billing Plan"/>#}
-    {#        <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>#}
-    {#        <input type="hidden" name="flash" value="Your subscription has been successfully updated."/>#}
-    {#        <input type="hidden" name="redirect" value="{{ root_url('/subscription/' ~ subscription.id) }}"/> </div>#}
-    {#    </div>#}
-    {#    {{ close_form() }} #}
-    {#</section>#}
+    <h2>Billing Plan</h2>
+    <section id="subscription-update-message"> {{ flash() }} </section>
+    <section id="subscription-billing-plan">
+        {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',
+            'class': 'custom',
+            'data-ajax-update': "#subscription-update-message=subscription-update-message",
+            'data-validation-message' : ''
+        }) }}
+        <select id="billing_plan" name="billing_plan">
+        {% for plan in billingPlans %}
+            <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>
+        {% endfor %}
+        </select> 
+        <div class="row">
+            <div class="twelwe columns"> <input type="submit" class="button" value="Update Billing Plan"/>
+            <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+            <input type="hidden" name="flash" value="Your subscription has been successfully updated."/>
+            <input type="hidden" name="redirect" value="{{ root_url('/subscription/' ~ subscription.id) }}"/> </div>
+        </div>
+        {{ close_form() }} 
+    </section>
 </div>
 <div class="row">
     <!-- Add Products -->
