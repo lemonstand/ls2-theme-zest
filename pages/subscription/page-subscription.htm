@@ -1,20 +1,25 @@
----
-action: 'subscriptions:subscription'
-template: inner
-protocol: all
-published: true
-name: Subscription
-url: '/subscription/:subscriptionId'
----
 <div id="subscription-content">
     {% if subscription %}
         {{ partial('shop-subscription-content') }}
-        {% if subscription.card %}
-          <!-- Example - Drop-In Twig Helper on Subscription Page - Update Card From Subscription Page -->
-          {{ customerCardForm('update', {card: subscription.card})}}
+        {% if card %}
+          <!-- Render card details -->
+          <div class="row">
+            <h1>Card</h1>
+            <div class="row">
+              <label for="card-{{ card.id }}">{{ subscription.paymentMethod.name }}: {{ card.card_and_brand }} </label>
+                <a class="button"
+                    href="#"
+                    data-ajax-handler="subscriptions:subscription"
+                    data-ajax-update="#subscription-content=shop-subscription-content"
+                    data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
+                    >Delete Card</a>
+                </div>
+          </div>
         {% else %}
           <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-          {{ customerCardForm('add') }}
+          <div class="row">
+            {{ subscriptionCardForm('add') }}
+          </div>
         {% endif %}
         <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
         {% if cards is defined %}
