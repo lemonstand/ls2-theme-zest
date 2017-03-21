@@ -1,11 +1,3 @@
----
-action: 'shop:customerProfile'
-template: inner
-protocol: all
-published: true
-name: Profile
-url: /profile
----
 <div class="row">
   <div class="content twelve columns">
     {% if customer %}
@@ -15,13 +7,29 @@ url: /profile
       <div class="row" id="profile-changepassword">
         {{ partial('shop-changepassword') }}
       </div>
-      <div class="row" id="profile-add-card">
-        {{ partial('shop-customerprofile-add-card') }}
-      </div>
-      {% if customer.hasCards() %}
-        <div class="row" id="profile-add-card">
-          {{ partial('shop-customerprofile-update-cards') }}
-        </div>
+      {% if hasFeature('saved-cards') %}
+          <div class="row" id="profile-add-card">
+            {{ partial('shop-customerprofile-add-card') }}
+          </div>
+          <div class="row" id="delete-customer-cards">
+              <!-- Render delete buttons for existing customer cards -->
+            {% if customer.hasCards() %}
+                {% for card in customer.cards %}
+                <div class="row">
+                <h1>Card</h1>
+                <div class="row">
+                  <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
+                    <a class="button"
+                        href="#"
+                        data-ajax-handler="shop:customerId"
+                        data-ajax-update="#subscription-content=shop-subscription-content"
+                        data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
+                        >Delete Card</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+          </div>
       {% endif %}
     {% else %}
       Please <a href="{{ root_url('login') }}">login</a> to edit your profile.
