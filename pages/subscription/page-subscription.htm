@@ -9,41 +9,6 @@ url: '/subscription/:subscriptionId'
 <div id="subscription-content">
     {% if subscription %}
         {{ partial('shop-subscription-content') }}
-        {% if card %}
-          <!-- Render card details -->
-          <div class="row">
-            <h1>Card</h1>
-            <div class="row">
-              <label for="card-{{ card.id }}">{{ subscription.paymentMethod.name }}: {{ card.card_and_brand }} </label>
-                <a class="button"
-                    href="#"
-                    data-ajax-handler="subscriptions:subscription"
-                    data-ajax-update="#subscription-content=shop-subscription-content"
-                    data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
-                    >Delete Card</a>
-                </div>
-          </div>
-        {% else %}
-          <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-          <div class="row">
-            {{ subscriptionCardForm('add') }}
-          </div>
-        {% endif %}
-        <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
-        {% if cards is defined %}
-            <div class="row">
-                <form method="post" data-ajax-handler="subscriptions:onUpdateCard">
-                    {% for card in cards %}
-                    <div class="row">
-                          <label for="card-{{ card.id }}">{{ card.card_brand_method }} </label>
-                          <input class="custom-radio" name="shop_customer_card_id" value="{{ card.id }}" type="radio" id="card-{{ card.id }}" />
-                    </div>
-                    {% endfor %}
-                    <input type="submit" value="Charge Subscription With This Card" class="button">
-                </form>
-            </div>
-        {% endif %}
-        <!-- End Cards -->
     {% else %}
       <div class="row">
         <p class="flash error">Subscription not found</p>
