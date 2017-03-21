@@ -1,3 +1,11 @@
+---
+action: 'shop:customerProfile'
+template: inner
+protocol: all
+published: true
+name: Profile
+url: /profile
+---
 <div class="row">
   <div class="content twelve columns">
     {% if customer %}
@@ -7,28 +15,14 @@
       <div class="row" id="profile-changepassword">
         {{ partial('shop-changepassword') }}
       </div>
+      <!-- Using hasFeature helper method to check whether card variables should be accessed. -->
       {% if hasFeature('saved-cards') %}
           <div class="row" id="profile-add-card">
             {{ partial('shop-customerprofile-add-card') }}
           </div>
-          <div class="row" id="delete-customer-cards">
+          <div class="row" id="profile-delete-customer-cards">
               <!-- Render delete buttons for existing customer cards -->
-            {% if customer.hasCards() %}
-                {% for card in customer.cards %}
-                <div class="row">
-                <h1>Card</h1>
-                <div class="row">
-                  <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
-                    <a class="button"
-                        href="#"
-                        data-ajax-handler="shop:customerId"
-                        data-ajax-update="#subscription-content=shop-subscription-content"
-                        data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
-                        >Delete Card</a>
-                    </div>
-                </div>
-                {% endfor %}
-            {% endif %}
+              {{ partial('shop-customerprofile-delete-cards') }}
           </div>
       {% endif %}
     {% else %}

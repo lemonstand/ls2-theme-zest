@@ -1,3 +1,11 @@
+---
+action: 'subscriptions:subscription'
+template: inner
+protocol: all
+published: true
+name: Subscription
+url: '/subscription/:subscriptionId'
+---
 <div id="subscription-content">
     {% if subscription %}
         {{ partial('shop-subscription-content') }}

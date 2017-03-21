@@ -1,0 +1,16 @@
+{% if customer.hasCards() %}
+    {% for card in customer.cards %}
+    <div class="row">
+    <h1>Card</h1>
+    <div class="row">
+      <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
+        <a class="button"
+            href="#"
+            data-ajax-handler="shop:onDeleteCustomerCard"
+            data-ajax-update="#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword,#profile-add-card=shop-customerprofile-add-card,#profile-delete-customer-cards=shop-customerprofile-delete-cards"
+            data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
+            >Delete Card</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
