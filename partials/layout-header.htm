@@ -46,6 +46,7 @@
         {% if customer %}
           <li class="{{ active_page == 'orders' ? 'active' : null }}"><a href="{{ site_url('orders') }}">My Orders</a></li>
           <li class="{{ active_page == 'profile' ? 'active' : null }}">
+          <li class="{{ active_page == 'subscriptions' ? 'active' : null }}"><a href="{{ site_url('subscriptions') }}">My Subscriptions</a></li>
             <a href="{{ site_url('profile') }}">My Profile</a>
           </li>
           <li class="menu-item-seperator"></li>
