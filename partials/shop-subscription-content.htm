@@ -1,7 +1,43 @@
 <div class="row">
+    <h1>Subscription: {{ subscription.id }}</h1>
+    {% if card %}
+      <!-- Render card details -->
+      <div class="row">
+        <h1>Payment Method</h1>
+        <div class="row">
+          <label for="card-{{ card.id }}">{{ subscription.paymentMethod.name }}: {{ card.card_and_brand }} </label>
+            <a class="button"
+                href="#"
+                data-ajax-handler="subscriptions:onDeleteCard"
+                data-ajax-update="#subscription-content=shop-subscription-content"
+                data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
+                >Delete Card</a>
+            </div>
+      </div>
+    {% else %}
+      <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+      <div class="row">
+        <h1>Add Payment Method</h1>
+        {{ subscriptionCardForm('add', {}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
+      </div>
+    {% endif %}
+    <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
+    {% if cards is defined %}
+        <div class="row">
+            <form method="post" data-ajax-handler="subscriptions:onUpdateCard">
+                {% for card in cards %}
+                <div class="row">
+                      <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
+                      <input class="custom-radio" name="shop_customer_card_id" value="{{ card.id }}" type="radio" id="card-{{ card.id }}" />
+                </div>
+                {% endfor %}
+                <input type="submit" value="Charge Subscription With This Card" class="button">
+            </form>
+        </div>
+    {% endif %}
     <!-- Subscription Products -->
     <section id="subscription-billing-plan">
-        <h2>Subscription Products</h2>
+        <h2>Products</h2>
         {% if not subscription.products or not subscription.products.count %} 
         <p class="flash info">Subscription Products Not Found</p>
         {% else %} 
@@ -39,6 +75,7 @@
         {% endif %}
     </section>
 </div>
+<!-- End Cards -->
 <div class="row">
     <!-- Billing Plan Selector -->
     <h2>Billing Plan</h2>
@@ -133,7 +170,7 @@
             </tr>
             {% for order in subscription.orders if not order.is_quote %} {% set url = root_url('/order/'~order.id) %} 
             <tr>
-                <td><a href="{{ url }}">{{ order.number }}</a></a></td>
+                <td><a href="{{ url }}">{{ order.number }}</a></td>
                 <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
                 <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
                 <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
@@ -143,38 +180,3 @@
     </div>
     {% endif %}
 </div>
-{% if card %}
-  <!-- Render card details -->
-  <div class="row">
-    <h1>Card</h1>
-    <div class="row">
-      <label for="card-{{ card.id }}">{{ subscription.paymentMethod.name }}: {{ card.card_and_brand }} </label>
-        <a class="button"
-            href="#"
-            data-ajax-handler="subscriptions:onDeleteCard"
-            data-ajax-update="#subscription-content=shop-subscription-content"
-            data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
-            >Delete Card</a>
-        </div>
-  </div>
-{% else %}
-  <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-  <div class="row">
-    {{ subscriptionCardForm('add', {}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
-  </div>
-{% endif %}
-<!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
-{% if cards is defined %}
-    <div class="row">
-        <form method="post" data-ajax-handler="subscriptions:onUpdateCard">
-            {% for card in cards %}
-            <div class="row">
-                  <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
-                  <input class="custom-radio" name="shop_customer_card_id" value="{{ card.id }}" type="radio" id="card-{{ card.id }}" />
-            </div>
-            {% endfor %}
-            <input type="submit" value="Charge Subscription With This Card" class="button">
-        </form>
-    </div>
-{% endif %}
-<!-- End Cards -->
