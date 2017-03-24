@@ -20,4 +20,7 @@ customFields:
     facebookImage: { type: image, title: 'Facebook Logo', default: '@images/facebook.png', comment: 'Upload your own social link icons! Recommended dimmensions of 16px by 16px.' }
     twitterImage: { type: image, title: 'Twitter Logo', default: '@images/twitter.png', comment: 'Upload your own social link icons! Recommended dimmensions of 16px by 16px.' }
     instagramImage: { type: image, title: 'Instagram Logo', default: '@images/instagram.png', comment: 'Upload your own social link icons! Recommended dimmensions of 16px by 16px.' }
+    ratingToggle: { type: checkbox, title: 'Product Ratings', default: 'checked', comment: 'Activate product ratings for this theme.'}
+    socialToggle: { type: checkbox, title: 'Social Links', default: 'checked', comment: 'Activate social media links.'}
+
 ---
