@@ -8,12 +8,12 @@
       {% else %}
         <div class="row">
           <div class="twelve columns">
+          <h1>Pay</h1>
           <!-- Example - stored cards as Radio buttons -->
             {% if cards is defined %}
                 <div class="row">
                     <form method="post" data-ajax-handler="shop:onPay">
                         {% for card in cards %}
-                        {#{{ dump(card) }}#}
                         <div class="row">
                               <label for="card-{{ card.id }}"> {{ card.paymentMethod.name }}: {{ card.cardAndBrand }} </label>
                               <input class="custom-radio" name="payment_method_token" value="{{ card.token }}" type="radio" id="card-{{ card.id }}" />
@@ -26,35 +26,8 @@
             {% endif %}
             <!-- End Cards -->
             <!-- Example - Drop-In Twig Helper - Gets Default Method -->
-                {{ paymentForm(
-                    {
-                        options: {
-                            number: {
-                                type: 'number',
-                                placeholder: 'Card Number'
-                            },
-                            cvv: {
-                                placeholder: 'CVV'
-                            },
-                            full_name: {
-                                placeholder: 'Cardholder name'
-                            },
-                            expiry: {
-                                placeholder: 'MM/YYYY'
-                            },
-                            submit: {
-                                value: 'Pay via Credit Card',
-                                class: ''
-                            },
-                            save_card: {
-                                enabled: true
-                            }
-                        }
-                    },
-                    paymentMethod
-                ) }}
+                {{ paymentForm() }}
             <!-- End Default Payment Form -->
-            <label for="payment_method">Payment method</label>
             <!-- 
               The payment form below (id="payment_form") automatically updates when
               the payment method is changed. See app.js for the implementation details. 
