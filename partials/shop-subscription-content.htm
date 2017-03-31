@@ -3,17 +3,8 @@
     {% if card %}
       <!-- Render card details -->
       <div class="row">
-        <h1>Payment Method</h1>
-        <div class="row">
-          <label for="card-{{ card.id }}">{{ subscription.paymentMethod.name }}: {{ card.card_and_brand }} </label>
-            <a class="button"
-                href="#"
-                data-ajax-handler="subscriptions:onDeleteCard"
-                data-ajax-update="#subscription-content=shop-subscription-content"
-                data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
-                >Delete Card</a>
-            </div>
-      </div>
+        <h1>Update Subscription Card</h1>
+        {{ subscriptionCardForm('update', {card: card}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
     {% else %}
       <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
       <div class="row">
