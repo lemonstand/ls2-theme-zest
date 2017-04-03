@@ -1,9 +1,0 @@
-{% if customer.hasCards() %}
-    <div class="six columns">
-      {{ flash() }}
-      <h3>Add Card</h3>
-      {{ customerCardForm('update', {card: card} , {
-          'data-ajax-update': "#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword,#profile-add-card=shop-customerprofile-add-card,#profile-delete-cards=shop-customerprofile-delete-cards"
-        }) }}
-    </div>
-{% endif %}
