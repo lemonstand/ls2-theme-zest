@@ -12,20 +12,6 @@
         {{ subscriptionCardForm('add', {}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
       </div>
     {% endif %}
-    <!-- Example - stored cards as Radio buttons, associates with existing subscription. -->
-    {% if cards is defined %}
-        <div class="row">
-            <form method="post" data-ajax-handler="subscriptions:onUpdateCard">
-                {% for card in cards %}
-                <div class="row">
-                      <label for="card-{{ card.id }}">{{ card.card_and_brand }} </label>
-                      <input class="custom-radio" name="shop_customer_card_id" value="{{ card.id }}" type="radio" id="card-{{ card.id }}" />
-                </div>
-                {% endfor %}
-                <input type="submit" value="Charge Subscription With This Card" class="button">
-            </form>
-        </div>
-    {% endif %}
     <!-- Subscription Products -->
     <section id="subscription-billing-plan">
         <h2>Products</h2>
