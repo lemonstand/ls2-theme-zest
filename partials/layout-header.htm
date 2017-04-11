@@ -89,6 +89,8 @@
         {% if page.name == "Product" %}
           <div id="breadcrumbs-area" class="product left">{{ code_block('breadcrumbs') }}</div>
           <div class="right"></div>
+        {% elseif page.name == "Subscription" %}
+          <div id="breadcrumbs-area"><h2 class="left">{{ page.title }} ID: {{subscription.id}}</h2></div>
         {% else %}
           <div id="breadcrumbs-area"><h2 class="left">{{ page.title }}</h2></div>
           <div class="right">

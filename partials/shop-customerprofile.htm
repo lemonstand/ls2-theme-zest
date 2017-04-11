@@ -2,7 +2,7 @@
 {{ open_form({'data-ajax-handler': 'shop:onUpdateCustomerProfile', 'class': 'custom', 'data-ajax-update': "#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword", 'data-validation-message' : ''}) }}
   <input type="hidden" name="billing[id]" value="{{ billing.id }}" />
   <div class="row">
-    <div class="six columns">
+    <div id="billing-info-container" class="padding-right six columns">
       <h3>Billing information</h3>
       <div class="row">
         <div class="six columns">
@@ -74,7 +74,7 @@
       </div>
     </div>
     
-    <div class="six columns">
+    <div id="shipping-info-container" class="six columns">
       <h3 class="inline-block">Shipping information</h3>
       <a href="#" id="profile_billing_to_shipping"
         data-ajax-handler="shop:onUpdateCustomerProfile"
@@ -145,7 +145,7 @@
     </div>        
   </div>
   <div class="row">
-    <div class="tvelwe columns">
+    <div class="twelve columns">
       <input type="submit" class="button" value="Save"/>
       <input type="hidden" name="flash" value="Your profile has been successfully updated."/>
       <input type="hidden" name="redirect" value="{{ root_url('/profile') }}"/>

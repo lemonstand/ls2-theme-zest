@@ -1,24 +1,11 @@
-<div class="row">
-    <h1>Subscription: {{ subscription.id }}</h1>
-    {% if card %}
-      <!-- Render card details -->
-      <div class="row">
-        <h1>Update Subscription Card</h1>
-        {{ subscriptionCardForm('update', {card: card}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
-    {% else %}
-      <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
-      <div class="row">
-        <h1>Add Payment Method</h1>
-        {{ subscriptionCardForm('add', {}, { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
-      </div>
-    {% endif %}
+<div class="content columns twelve">
     <!-- Subscription Products -->
     <section id="subscription-billing-plan">
         <h2>Products</h2>
         {% if not subscription.products or not subscription.products.count %} 
         <p class="flash info">Subscription Products Not Found</p>
         {% else %} 
-        <div class="row">
+        <div>
             <table class="product-list full-width">
                 <tr>
                     <th>Name</th>
@@ -51,109 +38,95 @@
         </div>
         {% endif %}
     </section>
-</div>
-<!-- End Cards -->
-<div class="row">
-    <!-- Billing Plan Selector -->
-    <h2>Billing Plan</h2>
-    <section id="subscription-update-message"> {{ flash() }} </section>
-    <section id="subscription-billing-plan">
-        {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',
-            'class': 'custom',
-            'data-ajax-update': "#subscription-update-message=subscription-update-message",
-            'data-validation-message' : ''
-        }) }}
-        <select id="billing_plan" name="billing_plan">
-        {% for plan in billingPlans %}
-            <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>
-        {% endfor %}
-        </select> 
-        <div class="row">
-            <div class="twelwe columns"> <input type="submit" class="button" value="Update Billing Plan"/>
-            <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
-            <input type="hidden" name="flash" value="Your subscription has been successfully updated."/>
-            <input type="hidden" name="redirect" value="{{ root_url('/subscription/' ~ subscription.id) }}"/> </div>
-        </div>
-        {{ close_form() }} 
-    </section>
-</div>
-<div class="row">
-    <!-- Add Products -->
-    {% if products.isEmpty() == false %}
-        <table class="product-list full-width">
-            <tr>
-            <th>Add Product To Subscription</th>
-            <th class="narrow">Price</th>
-            <th class="narrow"></th>
-            </tr>
-            {% for product in products %}
-                <tr>
-                    <td>
-                      <a class="hide-for-small" href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
-                      <div class="short-description">
-                        <h3><a href="/product/{{ product.url_name }}">{{ product.name }}</a></h3>
-                        {% set description = product.optionsString() %}
-                        {% if description %}<p>{{ description|unescape }}</p>{% endif %}
-                      </div>
-                    </td>
-                    <td class="narrow"><i>{{ product.price|currency }}</i> </td>
-                    <td class="narrow">
-                        <a class="button"
-                            href="#"
-                            data-ajax-handler="subscriptions:subscription"
-                            data-ajax-update="#subscription-content=shop-subscription-content"
-                            data-ajax-extra-fields="productId='{{ product.id }}'"
-                            >Add to subscription</a></td>
-                </tr>
-                {% if product.productVariants().isEmpty() == false %}
-                    {% for variant in product.productVariants() %}
-                        <tr>
-                            <td>
-                              <a class="hide-for-small" href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail(80, 80)|default('http://placehold.it/80x80') }}"/></a>
-                              <div class="short-description">
-                                <h3><a href="/product/{{ product.url_name }}">{{ product.name }}</a></h3>
-                                {% set description = variant.optionsString() %}
-                                {% if description %}<p>{{ description|unescape }}</p>{% endif %}
-                              </div>
-                            </td>
-                            <td class="narrow"><i>{{ product.price|currency }}</i> </td>
-                            <td class="narrow">
-                                <a class="button"
-                                    href="#"
-                                    data-ajax-handler="subscriptions:subscription"
-                                    data-ajax-update="#subscription-content=shop-subscription-content"
-                                    data-ajax-extra-fields="productId='{{ product.id }}',variantId='{{ variant.id }}'"
-                                    >Add to subscription</a></td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </table>
-    {% endif %}
-</div>
-<div class="row">
-    <!-- Subscription Orders -->
-    <h2>Orders</h2>
-    {% if not subscription.orders or not subscription.orders.count %} 
-    <p class="flash info">Orders not found</p>
-    {% else %} 
+    <!-- End Cards -->
     <div class="row">
-        <table class="product-list full-width">
-            <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Total</th>
-            </tr>
-            {% for order in subscription.orders if not order.is_quote %} {% set url = root_url('/order/'~order.id) %} 
-            <tr>
-                <td><a href="{{ url }}">{{ order.number }}</a></td>
-                <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
-                <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
-                <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
-            </tr>
-            {% endfor %} 
-        </table>
+        <div id="subscription-card-editor" class="six columns">
+            {% if card %}
+              <!-- Render card details -->
+                <h1>Update Subscription Card</h1>
+                {{ flash() }}
+                {{ subscriptionCardForm('update',
+                    {
+                        card: card,
+                        options: {
+                            number: {
+                                placeholder: 'Card number',
+                                style:"font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                            },
+                            cvv: {
+                                placeholder: 'CVV',
+                                style:"font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                            }
+                        }
+                    },
+                { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
+            {% else %}
+              <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+                <h1>Add Payment Method</h1>
+                {{ flash() }}
+                {{ subscriptionCardForm('add',
+                    {
+                        options: {
+                            number: {
+                                placeholder: 'Card number',
+                                style:"font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                            },
+                            cvv: {
+                                placeholder: 'CVV',
+                                style:"font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                            }
+                        }
+                    },
+                { 'data-ajax-update': '#subscription-content=shop-subscription-content' }) }}
+            {% endif %}
+        </div>
+        <div class="six columns">
+            <!-- Billing Plan Selector -->
+            <h2>Billing Plan</h2>
+            <section id="subscription-update-message"> {{ flash() }} </section>
+            <section id="subscription-billing-plan">
+                {{ open_form({'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',
+                    'class': 'custom',
+                    'data-ajax-update': "#subscription-update-message=subscription-update-message",
+                    'data-validation-message' : ''
+                }) }}
+                <select id="billing_plan" name="billing_plan">
+                {% for plan in billingPlans %}
+                    <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>
+                {% endfor %}
+                </select>
+                <div class="row">
+                    <div class="twelwe columns"> <input type="submit" class="button" value="Update Billing Plan"/>
+                    <input type="hidden" name="subscription_id" value="{{ subscription.id }}"/>
+                    <input type="hidden" name="flash" value="Your subscription has been successfully updated."/>
+                    <input type="hidden" name="redirect" value="{{ root_url('/subscription/' ~ subscription.id) }}"/> </div>
+                </div>
+                {{ close_form() }}
+            </section>
+        </div>
     </div>
-    {% endif %}
+    <div>
+        <!-- Subscription Orders -->
+        <h2>Orders</h2>
+        {% if not subscription.orders or not subscription.orders.count %}
+        <p class="flash info">Orders not found</p>
+        {% else %}
+            <table class="product-list full-width">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                </tr>
+                {% for order in subscription.orders if not order.is_quote %} {% set url = root_url('/order/'~order.id) %}
+                <tr>
+                    <td><a href="{{ url }}">{{ order.number }}</a></td>
+                    <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
+                    <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
+                    <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
 </div>

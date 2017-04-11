@@ -1,6 +1,5 @@
 {% if cart %}
   {{ partial('shop-cart-items') }}
-
   <div class="row">
     <div class="six columns">
       {% if order.payment_processed %}
@@ -9,29 +8,6 @@
         <div class="row">
           <div class="twelve columns">
           <h1>Pay</h1>
-          <!-- Example - stored cards as Radio buttons -->
-            {% if cards is defined %}
-                <div class="row">
-                    <form method="post" data-ajax-handler="shop:onPay">
-                        {% for card in cards %}
-                        <div class="row">
-                              <label for="card-{{ card.id }}"> {{ card.paymentMethod.name }}: {{ card.cardAndBrand }} </label>
-                              <input class="custom-radio" name="payment_method_token" value="{{ card.token }}" type="radio" id="card-{{ card.id }}" />
-                              <input type='hidden' name='payment_method_id' id='payment_method_id' value='{{ card.paymentMethod.id }}'>
-                        </div>
-                        {% endfor %}
-                        <input type="submit" value="Pay with Stored Card" class="button">
-                    </form>
-                </div>
-            {% endif %}
-            <!-- End Cards -->
-            <!-- Example - Drop-In Twig Helper - Gets Default Method -->
-                {{ paymentForm() }}
-            <!-- End Default Payment Form -->
-            <!-- 
-              The payment form below (id="payment_form") automatically updates when
-              the payment method is changed. See app.js for the implementation details. 
-            -->
             {{ open_form({'class': 'custom'}) }}
               <select name="paymentMethodId" id="payment_method">
                 <option value=''> - </option>
