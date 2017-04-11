@@ -1,9 +1,12 @@
 /* Common styles */
 body {
-  font: 14px "Helvetica Neue", Arial, sans-serif; -webkit-text-size-adjust: 100%;
+  font: 14px "Helvetica Neue", Arial, sans-serif; 
+  -webkit-text-size-adjust: 100%;
 }
 h1 {
-  font-size: 20px; margin-top: 17px; color: red;
+  font-size: 20px; 
+  margin-top: 17px; 
+  color: red;
 }
 h2 {
   font-size: 20px;
@@ -20,7 +23,8 @@ h3 {
   color: #2a2a2a;
 }
 ul li {
-  list-style-type: none; color: #656565;
+  list-style-type: none; 
+  color: #656565;
 }
 p {
   color: #656565; margin-bottom: 5px;
@@ -29,7 +33,9 @@ a:hover {
   color: #9f261b;
 }
 li.active > a {
-  color: #2a2a2a!important; font-weight: bold; cursor: default;
+  color: #2a2a2a!important; 
+  font-weight: bold; 
+  cursor: default;
 }
 .alpha {
   padding:0 10px 0 0;
