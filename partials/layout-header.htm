@@ -43,14 +43,17 @@
         </li>
         <li class="menu-item-seperator"></li>
         {% if customer %}
-          <li class="{{ active_page == 'orders' ? 'active' : null }}">
-            <a href="{{ site_url('orders') }}">My Orders</a>
-          </li>
-          <li class="{{ active_page == 'subscriptions' ? 'active' : null }}">
-              <a href="{{ site_url('subscriptions') }}">My Subscriptions</a>
-          </li>
-          <li class="{{ active_page == 'profile' ? 'active' : null }}">
-            <a href="{{ site_url('profile') }}">My Profile</a>
+          <li class="has-flyout {{ active_page == 'profile' or 
+                                   active_page == 'orders' or 
+                                   active_page == 'subscriptions' ? 'active' : null }} right-border-li">
+            <a href="{{ site_url('profile') }}">Profile</a>
+            <a class="flyout-toggle" href="{{ site_url('profile') }}"><span> </span></a>
+            <ul class="flyout" style="display: none;">
+              <li><a href="/orders">My Orders</a></li>
+              {% if customer.hasSubscriptions %}
+                <li><a href="/subscriptions">My Subscriptions</a></li>
+              {% endif %}
+            </ul>
           </li>
           <li class="menu-item-seperator"></li>
         {% endif %}
