@@ -1,34 +1,51 @@
 {% if cart %}
   {{ partial('shop-cart-items') }}
   <div class="row">
-    <div class="six columns">
-      {% if order.payment_processed %}
-        <p class="flash info"><strong>Thank you!</strong> The payment is already processed for this order.</p>
-      {% else %}
-        <div class="row">
-          <div class="twelve columns">
-          <h1>Pay</h1>
-            {{ open_form({'class': 'custom'}) }}
-              <select name="paymentMethodId" id="payment_method">
-                <option value=''> - </option>
-                {% for method in paymentMethods %}
-                    <option value="{{ method.id }}">{{ method.name }}</option>
-                {% endfor %}
-              </select>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div id="payment_form">{{ partial('shop-paymentform') }}</div>
-        </div>
-      {% endif %}
-    </div>
-  
-    <div class="three columns offset-by-two data-list align-right">
+    <div class="three columns offset-by-nine data-list align-right">
       {{ partial('shop-checkout-totals') }}
     </div>
   </div>
-  
+  {% if order.payment_processed %}
+    <p class="flash info"><strong>Thank you!</strong> The payment is already processed for this order.</p>
+  {% else %}
+    <div class="row">
+      <!-- Select payment method -->
+      <div class="four columns">
+        <h1>Pay</h1>
+        {{ open_form({'class': 'custom'}) }}
+          <select name="paymentMethodId" id="payment_method">
+            <option value=''> Select Payment Method </option>
+            {% for method in paymentMethods %}
+                <option value="{{ method.id }}">{{ method.name }}</option>
+            {% endfor %}
+          </select>
+        {{ close_form() }}
+        <div id="payment_form">{{ partial('shop-paymentform') }}</div>
+      </div>
+      <!-- End select payment method -->
+      <!--  Pay with stored cards shown in dropdown -->
+      {% if cards is defined %}
+        <div class="one columns">
+          <h3 id="or">or</h3>
+        </div>
+        <div class="six columns">
+          <h1>Pay with Stored Card</h1>
+          <form class="custom" method="post" data-ajax-handler="shop:onPay">
+            <input type='hidden' name='payment_method_id' id='payment_method_id' value=''>
+            <select name="payment_method_token" id="saved_card_option">
+              <option value=''> Select Stored card </option>
+              {% for card in cards %}
+                <option id="token-{{ card.token }}" value="{{ card.token }}" card-method="{{ card.paymentMethod.id }}">{{ card.paymentMethod.name }}: {{ card.cardAndBrand }}</option>
+              {% endfor %}
+            </select>
+            <input type="submit" value="Pay with Stored Card" class="button">
+          </form>
+        </div>
+      {% endif %}
+      <!-- End Cards -->
+    </div>
+  {% endif %}
+    
 {% else %}
   <p class="flash error">Order not found.</p>
 {% endif %}

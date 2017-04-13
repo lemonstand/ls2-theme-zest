@@ -145,7 +145,7 @@
     //
     // Handle the shipping option radio button clicks
     //
-    $('#checkout-page').on('change', '#shipping-methods input', function(){
+    $('#checkout-page').on('change', '#shipping-methods input', function() {
       // When the shipping method is shipping we want to update the
       // order totals area on the Checkout page. The native Checkout
       // action does all the calculations.
@@ -153,6 +153,16 @@
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
         update: {'#checkout-totals': 'shop-checkout-totals', '#mini-cart':'shop-minicart'}
       })
+    });
+
+    //
+    // Handle paying with stored card
+    //
+    $('#checkout-page').on('change', '#saved_card_option', function(e) {
+      var token = e.target.value;
+      var optionSelected = '#checkout-page #token-' + token;
+      var method = $(optionSelected).attr('card-method');
+      $('#checkout-page #payment_method_id').val(method);
     });
 
     //
@@ -185,7 +195,7 @@
             });
           }
       });
-    })
+    });
 
     //
     // handle classing footer and header menu
