@@ -4,6 +4,19 @@
   <div class="row">
     {{ partial('shop-cart-items', {'edit_cart': true}) }}
   </div>
+  <!-- Billing plans -->
+    <div class="row">
+    <div class="four columns right">
+      <label for="billing_plan">Billing plan</label>
+      <select id="billing_plan" name="billing_plan" data-ajax-handler="shop:cart"> 
+        <option value="">-- No subscription --</option>
+        {% for plan in billingPlans %}
+          <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <!-- End Billing plans -->
   
   <div class="row">
     <!-- shipping estimate calculator... how to do this? -->
