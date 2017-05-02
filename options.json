@@ -1,0 +1,109 @@
+{
+  "settings": {
+    "logoImage": {
+      "type": "image",
+      "title": "Logo Image",
+      "default": "@images/zest-logo.png",
+      "comment": "Upload your logo! Recommended height of 77px."
+    },
+    "bannerImage": {
+      "type": "image",
+      "title": "Banner Image",
+      "default": "@images/zest-banner-bg.jpg",
+      "comment": "Upload your own homepage banner! Recommended dimensions of 960px by 368px."
+    },
+    "bannerTitleText": {
+      "type": "text",
+      "title": "Banner Title Text",
+      "default": "Zest",
+      "comment": "Text used for the homepage banner title."
+    },
+    "bannerSentenceText": {
+      "type": "text",
+      "title": "Banner Sentence Text",
+      "default": "A responsive LemonStand theme",
+      "comment": "Text used for the homepage banner sentence."
+    },
+    "globalLinkColor": {
+      "type": "color",
+      "title": "Global Link Color",
+      "default": "#DC3E2F",
+      "comment": "Color used for links throughout the website, including product names."
+    },
+    "globalLinkHoverColor": {
+      "type": "color",
+      "title": "Global Link Hover Color",
+      "default": "#9f261b",
+      "comment": "Color used for links throughout the website when you hover your mouse cursor over."
+    },
+    "salePriceColor": {
+      "type": "color",
+      "title": "Sale Price Color",
+      "default": "#DC3E2F",
+      "comment": "Color used for the sale price on the product page (old price is crossed out)."
+    },
+    "saleBadgeColor": {
+      "type": "color",
+      "title": "Sale Badge Color",
+      "default": "#DC3E2F",
+      "comment": "Color used for the sale badge displayed in product lists, when a product is on sale."
+    },
+    "buttonColor": {
+      "type": "color",
+      "title": "Button Color",
+      "default": "#DC3E2F",
+      "comment": "Color used for Add To Cart and Checkout buttons."
+    },
+    "buttonHoverColor": {
+      "type": "color",
+      "title": "Button Hover Color",
+      "default": "#b92c1f",
+      "comment": "Button color when you hover your mouse cursor over."
+    },
+    "buttonBorderColor": {
+      "type": "color",
+      "title": "Button Border Color",
+      "default": "#DC3E2F",
+      "comment": "Border color for buttons."
+    },
+    "faviconImage": {
+      "type": "image",
+      "title": "Favicon Image",
+      "default": "@images/favicon.png",
+      "comment": "Upload your favicon. Recommended dimmensions of 16px by 16px. You must use a .png file."
+    },
+    "facebookImage": {
+      "type": "image",
+      "title": "Facebook Logo",
+      "default": "@images/facebook.png",
+      "comment": "Upload your own social link icons! Recommended dimmensions of 16px by 16px."
+    },
+    "twitterImage": {
+      "type": "image",
+      "title": "Twitter Logo",
+      "default": "@images/twitter.png",
+      "comment": "Upload your own social link icons! Recommended dimmensions of 16px by 16px."
+    },
+    "instagramImage": {
+      "type": "image",
+      "title": "Instagram Logo",
+      "default": "@images/instagram.png",
+      "comment": "Upload your own social link icons! Recommended dimmensions of 16px by 16px."
+    },
+    "ratingToggle": {
+      "type": "checkbox",
+      "title": "Product Ratings",
+      "default": "checked",
+      "comment": "Activate product ratings for this theme."
+    },
+    "socialToggle": {
+      "type": "checkbox",
+      "title": "Social Links",
+      "default": "checked",
+      "comment": "Activate social media links."
+    }
+  },
+  "pages": {
+    "404": "404"
+  }
+}
