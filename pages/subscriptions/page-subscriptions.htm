@@ -1,0 +1,32 @@
+---
+action: 'subscriptions:subscriptions'
+template: inner
+protocol: all
+published: true
+name: Subscriptions
+url: /subscriptions
+---
+<div class="row">
+    <div class="content twelve columns">
+        {% if not subscriptions or not subscriptions.count %} 
+        <p class="flash info">Subscriptions not found</p>
+        {% else %} 
+        <div class="row">
+            <table class="product-list full-width">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                {% for subscription in subscriptions %} {% set url = root_url('/subscription/' ~ subscription.id) %} 
+                <tr>
+                    <td><a href="{{ url }}">{{ subscription.id }}</a></a></td>
+                    <td><a href="{{ url }}">{{ subscription.created_at.format('M jS, Y') }}</a></td>
+                    <td><a href="{{ url }}">{{ subscription.status.name }}</a></td>
+                </tr>
+                {% endfor %} 
+            </table>
+        </div>
+        {% endif %} 
+    </div> 
+</div>

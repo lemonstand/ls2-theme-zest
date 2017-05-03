@@ -12,9 +12,15 @@ url: /profile
       <section id="profile-addresses">
       {{ partial('shop-customerprofile') }}
       </section>
-
-      <div class="row" id="profile-changepassword">
+      <div class="row">
         {{ partial('shop-changepassword') }}
+         <!-- Using hasFeature helper method to check whether card variables should be accessed. -->
+        {% if hasFeature('saved-cards') %}
+          {% set editedCard = '' %}
+          <div id="profile-edit-card">
+            {{ partial('shop-customerprofile-edit-card') }}
+          </div>
+        {% endif %}
       </div>
     {% else %}
       Please <a href="{{ root_url('login') }}">login</a> to edit your profile.

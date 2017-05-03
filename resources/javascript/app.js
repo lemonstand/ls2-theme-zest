@@ -145,7 +145,7 @@
     //
     // Handle the shipping option radio button clicks
     //
-    $('#checkout-page').on('change', '#shipping-methods input', function(){
+    $('#checkout-page').on('change', '#shipping-methods input', function() {
       // When the shipping method is shipping we want to update the
       // order totals area on the Checkout page. The native Checkout
       // action does all the calculations.
@@ -153,6 +153,16 @@
       $(this).sendRequest('shop:onCheckoutShippingMethod', {
         update: {'#checkout-totals': 'shop-checkout-totals', '#mini-cart':'shop-minicart'}
       })
+    });
+
+    //
+    // Handle paying with stored card
+    //
+    $('#checkout-page').on('change', '#saved_card_option', function(e) {
+      var token = e.target.value;
+      var optionSelected = '#checkout-page #token-' + token;
+      var method = $(optionSelected).attr('card-method');
+      $('#checkout-page #payment_method_id').val(method);
     });
 
     //
@@ -185,7 +195,7 @@
             });
           }
       });
-    })
+    });
 
     //
     // handle classing footer and header menu
@@ -302,7 +312,66 @@
       $(".modal-inner").on("click", function(e) {
         e.stopPropagation();
       });
-    });
+      
+      //
+      // Customer Profile, card editing 
+      //
+      $("#profile-edit-card").on("click", "#add-card", function(e) {
+        e.preventDefault();
+        $(".modal-state:checked").prop("checked", false).change();
+        $("#modal-add").prop("checked", true).change();
+      });
+      $("#profile-edit-card").on("click", ".edit-card", function(e) {
+        e.preventDefault();
+        $(".modal-state:checked").prop("checked", false).change();
+        $("[card-id=" + e.target.getAttribute('card') + "]").prop("checked", true).change();
+      });
 
+      //
+      // Close add/edit card modal when 
+      // - Valid form submission
+      // - Clicking outside modal
+
+      $( window ).on('LsCardFormSuccess', function(event, res, status, xhr, handler, form) {
+          $(".modal-state:checked").prop("checked", false).change();
+      });
+      $("#profile-edit-card").on("click", ".modal-fade-screen", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+      });
+      $("#profile-edit-card").on("click",".modal-fade-screen, .modal-close", function() {
+        $(".modal-state:checked").prop("checked", false).change();
+      });
+      $("#profile-edit-card").on("click", ".modal-inner", function(e) {
+        e.stopPropagation();
+      });
+
+      //
+      // Show modal on clicking add card
+      //
+      $("#profile-edit-card").on("change", "#modal-add", function() {
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(".modal-form-fade-screen").addClass("modal-fade-open");
+        } else {
+          $("body").removeClass("modal-open");
+          $(".modal-form-fade-screen").removeClass("modal-fade-open");
+        }
+      });
+
+      //
+      // Show modal on clicking edit card
+      //
+      $("#profile-edit-card").on("change", ".edit-modal", function(e) {
+        var cardModal = '#edit-' + e.target.getAttribute('card-id');
+
+        if ($(this).is(":checked")) {
+          $("body").addClass("modal-open");
+          $(cardModal).addClass("modal-fade-open");
+        } else {
+          $("body").removeClass("modal-open");
+          $(cardModal).removeClass("modal-fade-open");
+        }
+      });
+    });
   });
 })(jQuery);

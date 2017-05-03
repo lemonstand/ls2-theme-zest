@@ -1,12 +1,44 @@
 {% if paymentMethod is defined %}
-    {% set name = paymentMethod.getFrontendPartialName() %}
-    {{ partial(name, {paymentMethod: paymentMethod, payment: payment}) }}
+    {% if paymentMethod.isLegacy() %}
+        <p>
+            This payment method type is no longer supported. Create a standard or custom method.
+        </p>
+    {% elseif paymentMethod.isStandard() %}
+        {{ paymentForm({
+                    options: {
+                        number: {
+                            placeholder: 'Card number',
+                            style: "font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                        },
+                        cvv: {
+                            placeholder: 'CVV',
+                            style: "font-family: Courier New, Courier, monospace; letter-spacing: 0px; font-weight: 200; font-size: 16px; color: rgb(58, 61, 63); line-height: 32px; width: 345px;"
+                        },
+                        full_name: {
+                            placeholder: 'Cardholder name',
+                        },
+                        expiry: {
+                            placeholder: 'MM/YYYY',
+                        },
+                        submit: {
+                            value: 'Pay via Credit Card'
+                        },
+                        save_card: {
+                            enabled: true
+                        }
+                    }
+                },
+            paymentMethod
+        ) }}
+    {% elseif paymentMethod.isCustom() %}
+        {% set name = paymentMethod.getFrontendPartialName() %}
+        {{ partial(name, {paymentMethod: paymentMethod, payment: payment}) }}
+    {% endif %}
 {% else %}
-  {% set message = payment_method.pay_offline_message() %}
-  {% if message %}
-    <p>{{ message }}</p>
-  {% else %}
-    <p>This payment method has no payment form.</p>    
-  {% endif %}
-  <p><a class="secondary button" href="{{ site_url('shop') }}">Continue shopping</a></p>
+    <p>
+        This payment method has no payment form.
+    </p>
+    <p>
+        <a class="secondary button" href="{{ site_url('shop') }}">Continue shopping</a>
+    </p>
 {% endif %}

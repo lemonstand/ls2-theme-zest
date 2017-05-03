@@ -1,0 +1,15 @@
+---
+action: 'subscriptions:subscription'
+template: inner
+protocol: all
+published: true
+name: Subscription
+url: '/subscription/:subscriptionId'
+---
+<div class="row" id="subscription-content">
+    {% if subscription %}
+        {{ partial('shop-subscription-content') }}
+    {% else %}
+        <p class="flash error">Subscription not found</p>
+    {% endif %}
+</div>
