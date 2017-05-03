@@ -16,7 +16,7 @@
           <span class="error"></span>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="six columns">
           <label for="email">E-mail Address</label>
@@ -29,15 +29,15 @@
           <span class="error"></span>
         </div>
       </div>
-      
+
       <label for="billing_address">Address</label>
       <textarea id="billing_address" name="billing[street_address]">{{ billing.street_address }}</textarea>
       <span class="error"></span>
-      
+
       <label for="billing_address">Address 2</label>
       <textarea id="billing_address" name="billing[street_address_line2]">{{ billing.street_address_line2 }}</textarea>
       <span class="error"></span>
-      
+
       <div class="row">
         <div class="six columns">
           <label for="billing_city">City</label>
@@ -53,10 +53,10 @@
       <div class="row">
         <div class="six columns">
           <label for="billing_country">Country</label>
-          <!-- 
-            The state selector updates automatically when the country changes. 
-            See app.js for the implementation details. 
-          -->        
+          <!--
+            The state selector updates automatically when the country changes.
+            See app.js for the implementation details.
+          -->
           <select id="billing_country" name="billing[shop_country_id]" data-state-selector="#billing_state" data-current-state="{{ billing.country.id }}">
             {% for country in countries %}
               <option {{ option_state(billing.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
@@ -66,14 +66,14 @@
         </div>
         <div class="six columns">
           <label for="billing_state">State</label>
-          <select id="billing_state" name="billing[shop_state_id]" data-ajax-refresh > 
+          <select id="billing_state" name="billing[shop_state_id]" data-ajax-refresh >
             {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billing.state.id}) }}
           </select>
           <span class="error"></span>
         </div>
       </div>
     </div>
-    
+
     <div id="shipping-info-container" class="six columns">
       <h3 class="inline-block">Shipping information</h3>
       <a href="#" id="profile_billing_to_shipping"
@@ -83,7 +83,7 @@
         data-ajax-extra-fields="copy_billing_to_shipping='1'"
       >Copy Shipping Information</a>
       <input type="hidden" name="shipping[id]" value="{{ shipping.id }}" />
-      
+
       <div class="row">
         <div class="six columns">
           <label for="shipping_first_name">First Name</label>
@@ -103,15 +103,15 @@
           <span class="error"></span>
         </div>
       </div>
-      
+
       <label for="shipping_address">Address</label>
       <textarea name="shipping[street_address]" id="shipping_address">{{ shipping.street_address }}</textarea>
       <span class="error"></span>
-      
+
       <label for="shipping_address">Address 2</label>
       <textarea name="shipping[street_address_line2]" id="shipping_address_line2">{{ shipping.street_address_line2 }}</textarea>
       <span class="error"></span>
-      
+
       <div class="row">
         <div class="six columns">
           <label for="shipping_city">City</label>
@@ -136,13 +136,13 @@
         </div>
         <div class="six columns">
           <label for="shipping_state">State</label>
-          <select id="shipping_state" name="shipping[shop_state_id]" data-ajax-refresh> 
+          <select id="shipping_state" name="shipping[shop_state_id]" data-ajax-refresh>
             {{ partial('shop-stateoptions', {'states': shippingStates, 'selected': shipping.state.id}) }}
           </select>
           <span class="error"></span>
         </div>
       </div>
-    </div>        
+    </div>
   </div>
   <div class="row">
     <div class="twelve columns">

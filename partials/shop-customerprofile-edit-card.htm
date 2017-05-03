@@ -6,17 +6,17 @@
 		<tr>
 			<th>{{card.card_and_brand}}</th>
 			<th>
-				<a 
+				<a
 				class="edit-card"
 				card="{{card.id}}"
 				href="#"
 				>Edit Card</a>
 				{{ partial('shop-customerprofile-edit-card-form', {'card':card}) }}
     			<input class="modal-state edit-modal" type="checkbox" style="display: none;" card-id="{{card.id}}">
-    			
+
     		</th>
 			<th>
-				<a 
+				<a
                 href="#"
                 data-ajax-handler="shop:onDeleteCustomerCard"
                 data-ajax-update="#profile-edit-card=shop-customerprofile-edit-card"
@@ -24,7 +24,7 @@
                 >Delete Card</a>
             </th>
 		</tr>
-		
+
 		{% endfor %}
 	</table>
 	{% else %}
@@ -33,10 +33,9 @@
 	<input id="add-card" class="button" value="Add Card" readonly="readonly">
     <input class="modal-state" id="modal-add" type="checkbox" style="display: none;">
 
-	
+
     {{ flash() }}
-    
+
 </div>
 
 {{ partial('shop-customerprofile-add-card-form') }}
-	
