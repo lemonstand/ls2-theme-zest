@@ -9,8 +9,8 @@
     "options": "options.json",
     "demo" : "https//zest.lemonstand.com",
     "screenshots" : {
-      "small":"https://raw.githubusercontent.com/lemonstand/lemonstand_zest_repository/master/resources/screenshots/tiny-square.png",
-      "large":"https://raw.githubusercontent.com/lemonstand/llemonstand_zest_repository/master/resources/screenshots/large-square.png"
+      "small":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/tiny-square.png",
+      "large":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/large-square.png"
     }
   },  
   "scripts": {
