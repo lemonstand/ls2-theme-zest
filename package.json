@@ -7,7 +7,7 @@
     "code":"zest",
     "type": "theme",
     "options": "options.json",
-    "demo" : "https//zest.lemonstand.com",
+    "demo" : "https://zest.lemonstand.com",
     "screenshots" : {
       "small":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/tiny-square.png",
       "large":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/large-square.png"
