@@ -1,7 +1,7 @@
 {
   "name": "Zest",
   "version": "1.0.0",
-  "description": "A simple, minimal and responsive theme for LemonStand that’s easy to customize. It's based on the Foundation CSS framework. Strip out pieces, add new ones in, and use this theme as a base for your brand new look.",
+  "description": "A simple, minimal and responsive theme for LemonStand that’s easy to customize. It's very versatile, and can be used for selling a variety of different types of products.<br/>While the design is simple, colors are easy to customize, as well as the large hero image on the homepage.",
   "main": "index.js",
   "lemonstand" : {
     "code":"zest",
@@ -12,7 +12,7 @@
       "small":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/tiny-square.png",
       "large":"https://raw.githubusercontent.com/lemonstand/ls2-theme-zest/master/resources/screenshots/large-square.png"
     }
-  },  
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,8 @@
   "keywords": [
     "minimal",
     "responsive",
+    "fashion",
+    "hero-image",
     "foundation-css"
   ],
   "author": "LemonStand <support@lemonstand.com> (http://docs.lemonstand.com)",
