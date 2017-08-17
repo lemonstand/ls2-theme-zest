@@ -2,6 +2,7 @@
   "name": "Zest",
   "version": "1.0.0",
   "description": "A simple, minimal and responsive theme for LemonStand that’s easy to customize. It's very versatile, and can be used for selling a variety of different types of products.<br/>While the design is simple, colors are easy to customize, as well as the large hero image on the homepage.",
+  "excerpt": "Zest is a simple, minimal theme that is responsive, easy to customize, and is refreshingly versatile.",
   "main": "index.js",
   "lemonstand" : {
     "code":"zest",
